@@ -78,6 +78,8 @@ func Debx(dkTotal float64, dkm int, dknl float64)  {
 	benjin := 0.0
 	lxTotal := 0.0
 
+	fmt.Printf("  贷款总额： %.2f ，贷款周期： %d 个月，年利率： %.2f 还贷方式： 等额本息。\n", dkTotal, dkm, dknl)
+
 	emTotal := dkTotal * dknl / 12 * pow(1 + dknl / 12, dkm) / (pow(1 + dknl / 12, dkm) - 1) //每月还款金额
 
 	for i:=0; i < dkm; i++  {
@@ -97,6 +99,8 @@ func Debj(dkTotal float64, dkm int, dknl float64) {
 	benjin := 0.0
 	lxTotal := 0.0
 
+	fmt.Printf("  贷款总额： %.2f ，贷款周期： %d 个月，年利率： %.2f 还贷方式： 等额本金。\n", dkTotal, dkm, dknl)
+
 	benjin = dkTotal / float64(dkm)	// 等额本金， float64(强制类型转换
 	for i:=0; i < dkm; i++  {
 		lx = dkTotal*dknl/12;
@@ -107,9 +111,7 @@ func Debj(dkTotal float64, dkm int, dknl float64) {
 	fmt.Printf("总利息: %.2f", lxTotal)
 }
 
-/*
-*    递归法 求x^n
- */
+// 递归法 求x^n
 func pow(x float64, n int) float64 {
 	if n == 0 {
 		return 1
