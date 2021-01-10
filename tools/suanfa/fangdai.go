@@ -100,6 +100,7 @@ func scanData() {
 	}
 
 	// 请输入还款方式，1表示等额本息，2表示等额本金，输入其他数字则两种方案都展示
+	fmt.Println("\n")
 	fmt.Println("请输入还款方式，1表示等额本息，2表示等额本金，输入其他数字两种方案都展示")
 	fmt.Scan(&lFangan)
 
@@ -151,7 +152,7 @@ func Debx(dkTotal float64, dkm int, dknl float64)  {
 	benjin := 0.0
 	lxTotal := 0.0
 
-	fmt.Printf("  贷款总额： %.2f ，贷款周期： %d 个月，年利率： %.2f 还贷方式： 等额本息。\n", dkTotal, dkm, dknl)
+	fmt.Printf("  贷款总额： %.2f ，贷款周期： %d 个月，年利率： %f 还贷方式： 等额本息。\n", dkTotal, dkm, dknl)
 
 	emTotal := dkTotal * dknl / 12 * pow(1 + dknl / 12, dkm) / (pow(1 + dknl / 12, dkm) - 1) //每月还款金额
 
@@ -172,7 +173,7 @@ func Debj(dkTotal float64, dkm int, dknl float64) {
 	benjin := 0.0
 	lxTotal := 0.0
 
-	fmt.Printf("  贷款总额： %.2f ，贷款周期： %d 个月，年利率： %.2f 还贷方式： 等额本金。\n", dkTotal, dkm, dknl)
+	fmt.Printf("  贷款总额： %.2f ，贷款周期： %d 个月，年利率： %f 还贷方式： 等额本金。\n", dkTotal, dkm, dknl)
 
 	benjin = dkTotal / float64(dkm)	// 等额本金， float64(强制类型转换
 	for i:=0; i < dkm; i++  {
