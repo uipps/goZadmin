@@ -18,7 +18,8 @@ package main
 import (
 	"fmt"
 	"flag"
-	//"math"
+	//"os"
+	//"reflect"
 )
 
 var (
@@ -26,6 +27,7 @@ var (
 	month    int		// 贷款月数，20年就是240月
 	interestRateYear float64	// 贷款年利率
 	fangan    int		// 方案1
+	continueDo    int	// 继续计算还是退出 1-继续 0-退出
 )
 
 func init() {
@@ -35,8 +37,80 @@ func init() {
 	flag.IntVar(&fangan, "f", 0, "Usage: 0 1 2")	// 1-等额本息 2-等额本金
 }
 
-func main()  {
+func main() {
 	flag.Parse()
+
+	fangshi(capital, month, interestRateYear, fangan)
+
+	//continueDo = 1
+	// 继续还是退出
+	fmt.Println("\n")
+	fmt.Println("继续计算还是退出，输入1表示继续，输入其他数字表示退出，非1的数都退出)")
+	fmt.Scan(&continueDo)
+
+	// do-while循环
+	for {
+		// 检测全局变量的值
+		if (1 != continueDo) {
+			//os.Exit(0)
+			break
+		}
+		fmt.Println("\n\n")
+		scanData()
+		fmt.Println("\n\n")
+	}
+
+	return
+}
+
+func scanData() {
+	var (
+		lCapital    float64
+		lMonth     int
+		lInterestRateYear float64
+		lFangan    int		// 方案1
+	)
+
+	// 循环判断
+	for lCapital <= 0 {
+		fmt.Println("\n")
+		// 请输入贷款总额
+		fmt.Println("请输入贷款总额")
+		fmt.Scan(&lCapital)				// 字符串被强制转成了float64，其值为0
+
+		//fmt.Printf("%T, %f", lCapital, lCapital)
+		//lCapitalType := reflect.TypeOf(lCapital)
+		//fmt.Println(lCapitalType)
+		//fmt.Println(lCapital)
+	}
+
+
+	for lMonth <= 0 {
+		// 请输入贷款月份数，如10年就是120个月
+		fmt.Println("\n")
+		fmt.Println("请输入贷款月数")
+		fmt.Scan(&lMonth)
+	}
+
+	for (lInterestRateYear <= 0 || lInterestRateYear >= 1) {
+		// 请输入贷款年利率
+		fmt.Println("\n")
+		fmt.Println("请输入贷款年利率，在0~1之间，例如5%，则输入0.05")
+		fmt.Scan(&lInterestRateYear)
+	}
+
+	// 请输入还款方式，1表示等额本息，2表示等额本金，输入其他数字则两种方案都展示
+	fmt.Println("请输入还款方式，1表示等额本息，2表示等额本金，输入其他数字两种方案都展示")
+	fmt.Scan(&lFangan)
+
+	fangshi(lCapital, lMonth, lInterestRateYear, lFangan)
+
+	fmt.Println("\n")
+	fmt.Println("继续计算还是退出，输入1表示继续，输入其他数字表示退出，非1的数都退出)")
+	fmt.Scan(&continueDo)
+}
+
+func fangshi(capital float64, month int, interestRateYear float64, fangan int) {
 
 	if (1 == fangan) {
 		Debx(capital, month, interestRateYear);
@@ -48,9 +122,8 @@ func main()  {
 		fmt.Println("\n\n等额本金方式：")
 		Debj(capital, month, interestRateYear);
 	}
-	return
+	fmt.Println("\n")
 }
-
 
 // 1. 等额本息，特点：每月的月供相同
 //      等额本息的月供公式是如何推导出来的呢？ 每一期的利息为总贷款减去累计已还的本金然后乘以月利率。每一期还款本金=x-当期利息；
