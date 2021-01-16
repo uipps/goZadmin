@@ -9,6 +9,10 @@ type point struct {
 }
 
 func main() {
+
+	test01()
+	os.Exit(0)
+
 	//Go 为常规 Go 值的格式化设计提供了多种打印方式。例如，这里打印了 point 结构体的一个实例。
 	p := point{1, 2}
 	fmt.Printf("%v\n", p) // {1 2}
@@ -41,31 +45,55 @@ func main() {
 
 	fmt.Println("\n")
 	//使用 %s 进行基本的字符串输出。
-	fmt.Printf("%s\n", "\"string\"")	// "string"
+	fmt.Printf("%s\n", "\"string\"") // "string"
 	//像 Go 源代码中那样带有双引号的输出，使用 %q。
-	fmt.Printf("%q\n", "\"string\"")	// "\"string\""
+	fmt.Printf("%q\n", "\"string\"") // "\"string\""
 	//和上面的整形数一样，%x 输出使用 base-16 编码的字符串，每个字节使用 2 个字符表示。
-	fmt.Printf("%x\n", "hex this")		// 6865782074686973
+	fmt.Printf("%x\n", "hex this") // 6865782074686973
 
 	fmt.Println("\n")
 	//要输出一个指针的值，使用 %p。
-	fmt.Printf("%p\n", &p)			// 0xc0000100a0
+	fmt.Printf("%p\n", &p) // 0xc0000100a0
 	//当输出数字的时候，你将经常想要控制输出结果的宽度和精度，可以使用在 % 后面使用数字来控制输出宽度。默认结果使用右对齐并且通过空格来填充空白部分。
-	fmt.Printf("|%6d|%6d|\n", 12, 345)				// |    12|   345|
+	fmt.Printf("|%6d|%6d|\n", 12, 345) // |    12|   345|
 	//你也可以指定浮点型的输出宽度，同时也可以通过 宽度.精度 的语法来指定输出的精度。
-	fmt.Printf("|%6.2f|%6.2f|\n", 1.2, 3.45)		// |  1.20|  3.45|
+	fmt.Printf("|%6.2f|%6.2f|\n", 1.2, 3.45) // |  1.20|  3.45|
 	//要左对齐，使用 - 标志。
-	fmt.Printf("|%-6.2f|%-6.2f|\n", 1.2, 3.45)		// |1.20  |3.45  |
+	fmt.Printf("|%-6.2f|%-6.2f|\n", 1.2, 3.45) // |1.20  |3.45  |
 	//你也许也想控制字符串输出时的宽度，特别是要确保他们在类表格输出时的对齐。这是基本的右对齐宽度表示。
-	fmt.Printf("|%6s|%6s|\n", "foo", "b")			// |   foo|     b|
+	fmt.Printf("|%6s|%6s|\n", "foo", "b") // |   foo|     b|
 	//要左对齐，和数字一样，使用 - 标志。
-	fmt.Printf("|%-6s|%-6s|\n", "foo", "b")			// |foo   |b     |
+	fmt.Printf("|%-6s|%-6s|\n", "foo", "b") // |foo   |b     |
 
 	fmt.Println("")
 	//到目前为止，我们已经看过 Printf了，它通过 os.Stdout输出格式化的字符串。Sprintf 则格式化并返回一个字符串而不带任何输出。
-	s := fmt.Sprintf("a %s", "string")				//
+	s := fmt.Sprintf("a %s", "string") //
 	fmt.Println(s)
 	//你可以使用 Fprintf 来格式化并输出到 io.Writers而不是 os.Stdout。
 	fmt.Fprintf(os.Stderr, "an %s\n", "error")
 
+}
+
+func test01() {
+
+	//声明一个或多个变量
+	var a string = "initial"
+	fmt.Println(a)
+	var b, c int = 1, 2
+	fmt.Println(b, c)
+	//Go将推断变量的初始化类型
+	var d = true
+	fmt.Println(d)
+	//声明没有初始值的变量将被初始化为零值，如int的零值是0
+	var e int
+	fmt.Println(e)
+	//var f string = "short"的简化写法
+	f := "short"
+	fmt.Println(f)
+
+	g := 3
+	fmt.Println(g)
+
+	h := false
+	fmt.Println(h)
 }
