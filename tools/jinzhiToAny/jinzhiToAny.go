@@ -1,3 +1,5 @@
+// n最大支持76进制，最小2进制。
+// num数值必须是正整数
 package jinzhiToAny
 
 import (
@@ -15,6 +17,19 @@ var tenToAny map[int]string = map[int]string{0: "0", 1: "1", 2: "2", 3: "3", 4: 
 
 // 10进制转任意进制
 func DecimalToAny(num, n int) string {
+	// 参数校验
+	if n < 2 {
+		// 没有1进制，否则会一直循环；也没有0进制，被除数为0会异常。
+		return strconv.Itoa(num)
+	}
+	if 0 == num {
+		//fmt.Printf(" string(num) , %T, %v, %s\n", string(num),string(num),strconv.Itoa(num))
+		return strconv.Itoa(num) // 不能用string(num)，string(num) == ""
+	}
+	if num < 0 {
+		num = -1 * num // 强制转成正数处理
+	}
+
 	new_num_str := ""
 	var remainder int
 	var remainder_string string
@@ -30,7 +45,21 @@ func DecimalToAny(num, n int) string {
 	}
 	return new_num_str
 }
-func D十进制转换(num, n int) string {
+
+func D十进制转换(num int, n int) string {
+	// 参数校验
+	if n < 2 {
+		// 没有1进制，否则会一直循环；也没有0进制，被除数为0会异常。
+		return strconv.Itoa(num)
+	}
+	if 0 == num {
+		//fmt.Printf(" string(num) , %T, %v, %s\n", string(num),string(num),strconv.Itoa(num))
+		return strconv.Itoa(num) // 不能用string(num)，string(num) == ""
+	}
+	if num < 0 {
+		num = -1 * num // 强制转成正数处理
+	}
+
 	new_num_str := ""
 	var remainder int
 	var remainder_string string
@@ -39,12 +68,42 @@ func D十进制转换(num, n int) string {
 		if 76 > remainder && remainder > 9 {
 			remainder_string = tenToAny[remainder]
 		} else {
-			remainder_string = strconv.Itoa(remainder)
+			remainder_string = strconv.Itoa(remainder) // int转字符串
 		}
 		new_num_str = remainder_string + new_num_str
 		num = num / n
 	}
 	return new_num_str
+}
+
+// 采用递归方法进行实现，十进制转任意进制
+func DecimalToAnyDigui(new_num_str *string, num int, n int) {
+	// 参数校验
+	if n < 2 {
+		// 没有1进制，否则会一直循环；也没有0进制，被除数为0会异常。
+		return
+	}
+	if num < 0 {
+		num = -1 * num // 强制转成正数处理
+	}
+
+	y := num / n           // 商
+	remainder_string := "" // 10进制以上数值，需要寻找对应的单字母表示，例如10在16进制中就是a字母
+	remainder := num % n   // 余数
+
+	if 76 > remainder && remainder > 9 {
+		remainder_string = tenToAny[remainder]
+	} else {
+		remainder_string = strconv.Itoa(remainder)
+	}
+	*new_num_str = remainder_string + *new_num_str
+
+	if 0 != y {
+		// 商为0，终止递归
+		DecimalToAnyDigui(new_num_str, y, n)
+	}
+
+	return
 }
 
 // map根据value找key
@@ -60,8 +119,7 @@ func findkey(in string) int {
 
 // 任意进制转10进制
 func AnyToDecimal(num string, n int) int {
-	var new_num float64
-	new_num = 0.0
+	new_num := 0.0
 	nNum := len(strings.Split(num, "")) - 1
 	for _, value := range strings.Split(num, "") {
 		tmp := float64(findkey(value))
