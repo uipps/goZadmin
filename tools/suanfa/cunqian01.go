@@ -2,6 +2,7 @@
 // 假设银行一年整存零取的年利息为1.71% , 请问编程计算父亲至少需要一次性存款多少
 //  4年就是48个月，倒推的方式进行计算
 // go run cunqian01.go -f 1000 -r 0.0171 -m 48
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\cunqian01.go -f 1000 -r 0.0171 -m 2
 package main
 
 import (
@@ -25,12 +26,12 @@ func init() {
 func main() {
 	flag.Parse()
 
-	var money [49]float64
-	money[48] = fetch01
+	var money = make([]float64, month01+1) // 切片，变长数组
+	money[month01] = fetch01
 
 	for i := month01 - 1; i > 0; i-- {
-		money[i] = (money[i+1] + fetch01) / (1 + interestRateYear01/12)	// 书上的算法，我感觉有误，应该用下面的
-		//money[i] = (money[i+1]) / (1 + interestRateYear01/12) + fetch01		// 自己觉得
+		//money[i] = (money[i+1] + fetch01) / (1 + interestRateYear01/12)	// 书上的算法，我感觉有误，应该用下面的
+		money[i] = (money[i+1])/(1+interestRateYear01/12) + fetch01 // 自己觉得这样才是对的
 	}
 
 	for i := month01; i > 0; i-- {
@@ -91,8 +92,7 @@ func main() {
 第 2个月末本利合计：  45430.69
 第 1个月末本利合计：  46364.62
 
- */
-
+*/
 
 // 2. 自己的算法 money[i] = (money[i+1]) / (1 + interestRateYear01/12) + fetch01
 /*
