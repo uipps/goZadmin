@@ -14,7 +14,7 @@ var (
 	fetch01            float64 // 本金
 	month01            int64   // 贷款月数，20年就是240月
 	interestRateYear01 float64 // 贷款年利率
-	//continueDo01    int	// 继续计算还是退出 1-继续 0-退出
+	continueDo01       int     // 继续计算还是退出 1-继续 0-退出
 )
 
 func init() {
@@ -27,6 +27,27 @@ func main() {
 	flag.Parse()
 
 	fangshi01(fetch01, interestRateYear01, month01)
+
+	//continueDo01 = 1
+	// 继续还是退出
+	fmt.Println("\n")
+	fmt.Println("继续计算还是退出？输入1表示继续，输入其他数字或字符表示退出")
+	_, err := fmt.Scan(&continueDo01)
+	if err != nil {
+		fmt.Println("输入有误！\n")
+	}
+
+	// do-while循环
+	for {
+		// 检测全局变量的值
+		if 1 != continueDo01 {
+			//os.Exit(0)
+			break
+		}
+		fmt.Println("\n\n")
+		scanData01()
+		fmt.Println("\n\n")
+	}
 
 	return
 }
@@ -43,6 +64,45 @@ func fangshi01(fetch01 float64, interestRateYear01 float64, month01 int64) {
 
 	for i := month01; i > 0; i-- {
 		fmt.Printf("第%2d个月末本利合计： %9.2f\n", i, money[i])
+	}
+}
+
+func scanData01() {
+	var (
+		lFetch            float64
+		lMonth            int64
+		lInterestRateYear float64
+	)
+
+	// 循环判断
+	for lFetch <= 0 {
+		fmt.Println("\n")
+		// 请输入每月提取金额
+		fmt.Println("请输入每月提取金额")
+		fmt.Scan(&lFetch) // 字符串被强制转成了float64，其值为0
+	}
+
+	for lMonth <= 0 {
+		// 请输入月数，如4年就是48个月
+		fmt.Println("\n")
+		fmt.Println("请输入月数")
+		fmt.Scan(&lMonth)
+	}
+
+	for lInterestRateYear <= 0 || lInterestRateYear >= 1 {
+		// 请输入存款年利率
+		fmt.Println("\n")
+		fmt.Println("请输入存款年利率，在0~1之间，例如2%，则输入0.02")
+		fmt.Scan(&lInterestRateYear)
+	}
+
+	fangshi01(lFetch, lInterestRateYear, lMonth)
+
+	fmt.Println("\n")
+	fmt.Println("继续计算还是退出？输入1表示继续，输入其他数字或字符表示退出")
+	_, err := fmt.Scan(&continueDo01)
+	if err != nil {
+		fmt.Println("输入有误！\n")
 	}
 }
 
