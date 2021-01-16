@@ -12,19 +12,26 @@ import (
 
 var (
 	fetch01            float64 // 本金
-	month01            int     // 贷款月数，20年就是240月
+	month01            int64   // 贷款月数，20年就是240月
 	interestRateYear01 float64 // 贷款年利率
 	//continueDo01    int	// 继续计算还是退出 1-继续 0-退出
 )
 
 func init() {
 	flag.Float64Var(&fetch01, "f", 1000, "Usage: 1000 1500")
-	flag.IntVar(&month01, "m", 48, "Usage: 12 48")
+	flag.Int64Var(&month01, "m", 48, "Usage: 12 48")
 	flag.Float64Var(&interestRateYear01, "r", 0.0171, "Usage: 0.05")
 }
 
 func main() {
 	flag.Parse()
+
+	fangshi01(fetch01, interestRateYear01, month01)
+
+	return
+}
+
+func fangshi01(fetch01 float64, interestRateYear01 float64, month01 int64) {
 
 	var money = make([]float64, month01+1) // 切片，变长数组
 	money[month01] = fetch01
@@ -37,8 +44,6 @@ func main() {
 	for i := month01; i > 0; i-- {
 		fmt.Printf("第%2d个月末本利合计： %9.2f\n", i, money[i])
 	}
-
-	return
 }
 
 // 1. 书上的计算方法 money[i] = (money[i+1] + fetch01) / (1 + interestRateYear01/12)
