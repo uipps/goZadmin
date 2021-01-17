@@ -30,6 +30,9 @@ func main() {
 
 	// 数字字符串转成int类型
 	for _, val := range arr2 {
+		if "" == val {
+			continue // 过滤空白
+		}
 		i, _ := strconv.Atoi(val) // 字符串转int类型
 		arr1 = append(arr1, i)
 	}
@@ -43,7 +46,8 @@ func main() {
 func bubbleSort(arr []int) {
 	n := len(arr)
 	for i := 0; i < n; i++ {
-		/*for j := i + 1; j < n; j++ {
+		/*// 这个第一位总是最小，时间复杂度O(n^2)，从左边第一个开始，每次都能找到其i+i后最小的，并放到i位置上，也就是找最小放左边
+		for j := i + 1; j < n; j++ {
 		    if (arr[i] > arr[j]) {
 		        arr[i], arr[j] = arr[j], arr[i] // 交换
 		    }
@@ -54,7 +58,8 @@ func bubbleSort(arr []int) {
 		        arr[j-1], arr[j] = arr[j], arr[j-1] // 交换
 		    }
 		}*/
-		// 时间复杂度O(n*logn), 这个比较优
+
+		// 时间复杂度更低O(n*logn)，就是从第一项开始，每项都跟其后的 数据比较，这个冒泡排序找最大的一个往右放
 		for j := 1; j < n-i; j++ {
 			if arr[j-1] > arr[j] {
 				arr[j-1], arr[j] = arr[j], arr[j-1] // 交换
