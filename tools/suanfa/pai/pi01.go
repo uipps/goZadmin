@@ -39,11 +39,11 @@ func main() {
 	pai04(xiaoshuLen)
 	fmt.Println("\n")
 
-	fmt.Println("\n第一种计算方法")
-	geyuanfa01(numQieGe) // 割圆法
-	fmt.Println("\n第二种计算方法")
-	pai02(1e-16)
-	pai02(1e-100) // 没啥差别
+	//fmt.Println("\n第一种计算方法")
+	//geyuanfa01(numQieGe) // 割圆法
+	//fmt.Println("\n第二种计算方法")
+	//pai02(1e-16)
+	//pai02(1e-100) // 没啥差别
 
 	// 执行时间计算
 	endTime := time.Now().UnixNano()
@@ -63,16 +63,12 @@ func pai04(xiaoshuLeng int) {
 	fenzi := 1
 	fenmu := 3
 
-	i := 0
-	result := 0
-	carry := 0
-
 	// 初始化
-	for i = 0; i < xiaoshuLeng; i++ {
+	for i := 0; i < xiaoshuLeng; i++ {
 		pi_arr = append(pi_arr, 0)
 		temp_arr = append(temp_arr, 0)
-		//pi_arr[i] = 0
-		//temp_arr[i] = 0
+		pi_arr[i] = 0
+		temp_arr[i] = 0
 	}
 	pi_arr[1] = 2
 	temp_arr[1] = 2
@@ -81,26 +77,26 @@ func pai04(xiaoshuLeng int) {
 
 	// 循环计算
 	for flag01 > 0 && count < 2147483646 {
-		carry = 0
-		for i = xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位相乘
-			result = temp_arr[i]*fenzi + carry // 用每一位去乘，再加上进位
-			temp_arr[i] = result % 10          // 保存个数
-			carry = result / 10                // 进位
+		carry := 0
+		for i := xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位相乘
+			result := temp_arr[i]*fenzi + carry // 用每一位去乘，再加上进位
+			temp_arr[i] = result % 10           // 保存个数
+			carry = result / 10                 // 进位
 		}
 
 		carry = 0
-		for i = 0; i < xiaoshuLeng; i++ { // 从高位到低位相除
-			result = temp_arr[i] + carry*10 // 当前加上前一位的余数
-			temp_arr[i] = result / fenmu    // 当前为的整数部分
-			carry = result % fenmu          // 当前位的余数
+		for i := 0; i < xiaoshuLeng; i++ { // 从高位到低位相除
+			result := temp_arr[i] + carry*10 // 当前加上前一位的余数
+			temp_arr[i] = result / fenmu     // 当前为的整数部分
+			carry = result % fenmu           // 当前位的余数
 		}
 
-		flag01 = 0                            // 清除标记
-		for i = xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位, 将结果累加
-			result = pi_arr[i] + temp_arr[i]
+		flag01 = 0                             // 清除标记
+		for i := xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位, 将结果累加
+			result := pi_arr[i] + temp_arr[i]
 			pi_arr[i] = result % 10
 			pi_arr[i-1] += result / 10
-			flag01 = flag01 | temp_arr[i]
+			flag01 |= temp_arr[i]
 		}
 		count++
 		fenzi++
@@ -111,10 +107,10 @@ func pai04(xiaoshuLeng int) {
 	// 输出数据
 	fmt.Printf("\n计算了%d次\n", count)
 	fmt.Printf("\t---第1-1000位小数---\n")
-	fmt.Printf("PI=%d.\n", pi_arr[1])
+	fmt.Printf("PI=%d.", pi_arr[1])
 
 	// 小数部分要循环输出
-	for i = 2; i < xiaoshuLeng; i++ {
+	for i := 2; i < xiaoshuLeng; i++ {
 		if i > 2 && (i-2)%10 == 0 { // 每十位输入一个空格
 			fmt.Print(" ")
 		}
