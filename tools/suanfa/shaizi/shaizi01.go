@@ -1,3 +1,4 @@
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\shaizi\shaizi01.go
 package main
 
 import (
