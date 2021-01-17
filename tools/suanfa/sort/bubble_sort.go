@@ -45,6 +45,8 @@ func main() {
 // 冒泡排序
 func bubbleSort(arr []int) {
 	n := len(arr)
+	flag := 0
+
 	for i := 0; i < n; i++ {
 		/*// 这个第一位总是最小，时间复杂度O(n^2)，从左边第一个开始，每次都能找到其i+i后最小的，并放到i位置上，也就是找最小放左边
 		for j := i + 1; j < n; j++ {
@@ -63,9 +65,13 @@ func bubbleSort(arr []int) {
 		for j := 1; j < n-i; j++ {
 			if arr[j-1] > arr[j] {
 				arr[j-1], arr[j] = arr[j], arr[j-1] // 交换
+				flag = 1                            // 设置交换标记
 			}
 		}
 		fmt.Printf("第%2d遍：", i+1)
 		fmt.Println(arr)
+		if 0 == flag { //  没有交换，退出循环，后面不用做了，减少了多余的判断
+			break
+		}
 	}
 }
