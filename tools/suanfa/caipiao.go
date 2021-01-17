@@ -50,6 +50,9 @@ func init() {
 func main() {
 	flag.Parse()
 
+	startTime := time.Now().UnixNano()
+	//fmt.Println("startTime：", startTime)
+
 	if max01 < min01 {
 		fmt.Println("最大数不能小于最小数")
 		return
@@ -77,6 +80,13 @@ func main() {
 	} else {
 		shuangseqiu01(min01, max01, minBlue01, maxBlue01)
 	}
+
+	// 执行时间计算
+	endTime := time.Now().UnixNano()
+	fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
+	fmt.Printf("  endTime：%d, %s\n", endTime/1e3, time.Unix(0, endTime).Format("2006-01-02 15:04:05"))
+	nanoSeconds := float64(endTime-startTime) / 1e3
+	fmt.Println("spendTime：", nanoSeconds)
 }
 
 //
