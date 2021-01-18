@@ -20,6 +20,7 @@ import (
     "flag"
     "fmt"
     "math"
+    "runtime"
     "time"
 )
 
@@ -39,7 +40,7 @@ func main() {
     flag.Parse()
 
     startTime := time.Now().UnixNano()
-    //fmt.Println("startTime：", startTime)
+    fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
 
     fmt.Println("\n第四种计算方法，任意位")
     pai04(xiaoshuLen)
@@ -53,7 +54,6 @@ func main() {
 
     // 执行时间计算
     endTime := time.Now().UnixNano()
-    fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
     fmt.Printf("  endTime：%d, %s\n", endTime/1e3, time.Unix(0, endTime).Format("2006-01-02 15:04:05"))
     nanoSeconds := float64(endTime-startTime) / 1e3
     fmt.Println("spendTime：", nanoSeconds)
@@ -80,14 +80,22 @@ func pai04(xiaoshuLeng int) {
     temp_arr[1] = 2
     //fmt.Println(pi_arr)
     //fmt.Println(temp_arr)
+    _, _, line, _ := runtime.Caller(0)
+    fmt.Printf("\n ---------- Line: %3d, 初始状态，count:%4d , fenzi: %3d , fenmu: %3d ---------- \n", line+1, count, fenzi, fenmu)
 
     // 循环计算
     for flag01 > 0 && count < 2147483646 {
+        fmt.Printf("\n\n\n   ------ Line: %3d, count:%4d , fenzi: %3d , fenmu: %3d ------ \n", line+5, count, fenzi, fenmu)
         carry := 0
         for i := xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位相乘
             result := temp_arr[i]*fenzi + carry // 用每一位去乘，再加上进位
             temp_arr[i] = result % 10           // 保存个数
             carry = result / 10                 // 进位
+
+            fmt.Printf("\n      --- Line:%3d, count:%d , i: %d --- \n", line+12, count, i)
+            fmt.Println(result)
+            fmt.Println(temp_arr)
+            fmt.Println(carry)
         }
 
         carry = 0
@@ -95,6 +103,11 @@ func pai04(xiaoshuLeng int) {
             result := temp_arr[i] + carry*10 // 当前加上前一位的余数
             temp_arr[i] = result / fenmu     // 当前位的整数部分
             carry = result % fenmu           // 当前位的余数，累加到下一位的运算
+
+            fmt.Printf("\n      --- Line: %3d, count:%d , i: %d --- \n", line+24, count, i)
+            fmt.Println(result)
+            fmt.Println(temp_arr)
+            fmt.Println(carry)
         }
 
         flag01 = 0                             // 清除标记
@@ -103,6 +116,11 @@ func pai04(xiaoshuLeng int) {
             pi_arr[i] = result % 10           // 保留一位数
             pi_arr[i-1] += result / 10        // 向高位进位(i越小是高位)
             flag01 |= temp_arr[i]             // 若temp中的数全部为0，退出循环
+
+            fmt.Printf("\n      --- Line: %3d, count:%d , i: %d --- \n", line+37, count, i)
+            fmt.Println(result)
+            fmt.Println(pi_arr)
+            fmt.Println(flag01)
         }
         count++    // 记录大圈循环次数
         fenzi++    // 累加分子
