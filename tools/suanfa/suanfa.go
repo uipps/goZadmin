@@ -1,4 +1,4 @@
-
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\suanfa.go
 package main
 
 import (

@@ -1,5 +1,5 @@
 // 输出1000（n可变值）以内的所有质数。并输出计算次数进行对比
-// go run zhishu.go -n 1000
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\zhishu.go -n 1000
 package main
 
 import (

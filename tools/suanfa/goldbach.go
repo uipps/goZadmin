@@ -1,6 +1,6 @@
 // ：任一大于2的偶数都可写成两个质数之和
 // 	go run goldbach.go -n 30 -o 1
-//  go run goldbach.go -n 2880800
+//  go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\goldbach.go -n 2880800
 package main
 
 import (
