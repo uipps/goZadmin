@@ -94,6 +94,7 @@ func pai04(xiaoshuLeng int) {
 
             fmt.Printf("\n      --- Line:%3d, count:%d , i: %d --- \n", line+12, count, i)
             fmt.Println(result)
+            fmt.Printf("temp_arr: ")
             fmt.Println(temp_arr)
             fmt.Println(carry)
         }
@@ -104,22 +105,26 @@ func pai04(xiaoshuLeng int) {
             temp_arr[i] = result / fenmu     // 当前位的整数部分
             carry = result % fenmu           // 当前位的余数，累加到下一位的运算
 
-            fmt.Printf("\n      --- Line: %3d, count:%d , i: %d --- \n", line+24, count, i)
+            fmt.Printf("\n      --- Line: %3d, count:%d , i: %d --- \n", line+25, count, i)
             fmt.Println(result)
+            fmt.Printf("temp_arr: ")
             fmt.Println(temp_arr)
             fmt.Println(carry)
         }
 
         flag01 = 0                             // 清除标记
         for i := xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位, 将计算结果累加(i越小是高位，i越大是低位)
-            result := pi_arr[i] + temp_arr[i] // 将计算结构累加到result中
+            result := pi_arr[i] + temp_arr[i] // 将计算结果累加到result中
             pi_arr[i] = result % 10           // 保留一位数
             pi_arr[i-1] += result / 10        // 向高位进位(i越小是高位)
             flag01 |= temp_arr[i]             // 若temp中的数全部为0，退出循环
 
-            fmt.Printf("\n      --- Line: %3d, count:%d , i: %d --- \n", line+37, count, i)
+            fmt.Printf("\n      --- Line: %3d, count:%d , i: %d --- \n", line+39, count, i)
             fmt.Println(result)
+            fmt.Printf("pi_arr: ")
             fmt.Println(pi_arr)
+            fmt.Printf("temp_arr: ")
+            fmt.Println(temp_arr)
             fmt.Println(flag01)
         }
         count++    // 记录大圈循环次数
