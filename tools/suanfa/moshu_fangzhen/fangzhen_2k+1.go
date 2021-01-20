@@ -149,6 +149,12 @@ func fangzhen2k1(n int) int {
         }
         fmt.Println()
     }
+    // 对角线的和
+    sum := 0;
+    for i := 1; i <= n; i++ {// 统计对角线的和
+        sum += matrix[i][i];
+    }
+    fmt.Printf("\n各行、列、对角线的和为：%d\n", sum);
 
     return 1
 }
