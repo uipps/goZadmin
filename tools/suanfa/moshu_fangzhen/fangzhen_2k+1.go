@@ -21,6 +21,7 @@ package main
 import (
     "flag"
     "fmt"
+    "os"
     "time"
 )
 
@@ -41,8 +42,13 @@ func main() {
     startTime := time.Now().UnixNano()
     fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
 
+    // 参数校验
+    if argBase1 < 0 {
+        fmt.Println("-b 参数错误，只能是大于等于0的数，提供的数值是：", argBase1)
+        os.Exit(0)
+    }
     // 2k+1矩阵
-    Magic1(argN1)
+    fangzhen2k1(argN1)
 
     // 执行时间计算
     endTime := time.Now().UnixNano()
@@ -51,47 +57,97 @@ func main() {
     fmt.Println("spendTime：", nanoSeconds)
 }
 
+func Magic1(n int) {
+    /*var matrix [][]int
+      var tmp_arr []int
+      // 初始化一下
+      for j := 0; j <= n; j++ {
+          tmp_arr = append(tmp_arr, 0)
+      }
+      for i := 0; i <= n; i++ {
+          matrix = append(matrix, tmp_arr)
+          fmt.Println();
+      }
+      fmt.Println(matrix);
+
+      rlt := Magic1(matrix, n)
+
+      if 1 == rlt {
+          // 输出
+          for i := 1; i < n; i++ {
+              for j := 1; j < n; j++ {
+                  fmt.Printf("%2d   ", matrix[i][j]);
+              }
+              fmt.Println();
+          }
+      } else {
+          fmt.Println("生成方阵失败！可能是输入的阶数不正确！");
+      }
+    */
+}
 
 // 生成方阵的函数
-func Magic1(n int) int {
+func fangzhen2k1(n int) int {
     if (n%2 == 0 || n < 3) {
         return 0 // 偶数返回
     }
+    //const MAXSIZE = 99
+    //matrix := [MAXSIZE][MAXSIZE]int{} // 用二维数组也行
+    // 二维切片初始化，二维数组初始化
+    sliceLen := n+6 // 容量要大一点，因为第三行用a[3]表示
+    //matrix := make([][]int, sliceLen)
+    //for i := 0; i < sliceLen; i++ {
+    //    matrix[i] = make([]int, sliceLen)
+    //}
+    //matrix := [][]int 错误的语法
+    defaultV := -1000   // 默认值可以用0，也可以自定义一个值
+    var matrix [][]int
+    for i := 0; i < sliceLen; i++ {
+        var tmp_s []int
+        for j := 0; j < sliceLen; j++ {
+            tmp_s = append(tmp_s, defaultV)
+        }
+        matrix = append(matrix, tmp_s)
+    }
+    //fmt.Println(matrix)
 
-    matrix := [4][4] int {} // {0,0,0}, {0,0,0}, {0,0,0}
+    i := 1 // 行号，从1开始，1表示第一行,不是从0开始；列号也是从1开始，1表示第一列
 
-    i := 1 // 行号，从1开始吧
-    k := 1
-    j := n / 2 + 1 // 行中间
+    j := (n + 1) / 2 // 行中间列号，
+    matrix[i][j] = argBase1 // 将1放在第一行中间一列
 
-    matrix[i][j] = k
-
-    for k = 2; k <= n*n; k++ {
-        tmpi := i;
-        tmpj := j;
-        if (j == n) {
-            j = 1;
+    k := argBase1
+    for k = argBase1 + 1; k <= n*n+argBase1-1; k++ {
+        tmpi := i   // 记录原位置，占用的时候需要进行下移操作（行号+1）
+        tmpj := j
+        if (j == n) { // 1列就是第一列，为j==n不能++就越界，所以从头开始
+            j = 1
         } else {
-            j++;
+            j++
         }
-        if (i == 1) {
-            i = n;
+        if (i == 1) { // i==0,i--就会越界，因此用最大行号替代
+            i = n
         } else {
-            i--;
+            i--
         }
-        if (matrix[i][j] != 0) {
-            i = tmpi + 1;
-            j = tmpj;
+        // 新位置被占用，那么原位置下移一位即可
+        if (matrix[i][j] != defaultV) {
+            j = tmpj
+            i = tmpi + 1
+            // tmpi可能为n，i可能会越界，实际上不会发生
+            //if i > n {
+            //    i = i - n   // 也不用判断新位置是否被占用的情况了
+            //}
         }
-        matrix[i][j] = k;
+        matrix[i][j] = k
     }
 
     // 输出
     for i := 1; i <= n; i++ {
         for j := 1; j <= n; j++ {
-            fmt.Printf("%2d   ", matrix[i][j]);
+            fmt.Printf("%2d   ", matrix[i][j])
         }
-        fmt.Println();
+        fmt.Println()
     }
 
     return 1
