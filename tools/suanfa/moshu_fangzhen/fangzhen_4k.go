@@ -10,7 +10,7 @@
 // go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_4k.go" -n 4
 /**
 
-请输入矩阵行数(奇数):3
+请输入矩阵行数(4k): 4
  1   14   15    4
  8   11   10    5
 12    7    6    9
@@ -66,10 +66,9 @@ func fangzhen4k(n int) int {
     }
 
     // 初始化二维切片
-    sliceLen := n
-    matrix := make([][]int, sliceLen)
-    for i := 0; i < sliceLen; i++ {
-        matrix[i] = make([]int, sliceLen)
+    matrix := make([][]int, n)
+    for i := 0; i < n; i++ {
+        matrix[i] = make([]int, n)
     }
     // 初始填入数字，并且进行水平翻转
     kBase := argBase3

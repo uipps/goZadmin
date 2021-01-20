@@ -9,7 +9,7 @@
 // go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_2k+1.go" -n 5
 /**
 
-请输入矩阵行数(奇数):3
+请输入矩阵行数(奇数2k+1):3
  8    1    6
  3    5    7
  4    9    2
