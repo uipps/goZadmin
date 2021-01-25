@@ -27,6 +27,7 @@ func main() {
 	flag.Parse()
 
 	buyu01()
+	buyu02() // TODO 网上另一个方法，似乎不对
 }
 
 func buyu01() {
@@ -45,4 +46,26 @@ func buyu01() {
 		time.Sleep(100 * time.Microsecond)
 	}
 	fmt.Printf("至少捕了%d条鱼！其中A拿走了%d, B拿走了%d", i, (i-1)/5, (i-1-(i-1)/5-1)/5)
+}
+
+// 这个程序似乎不对
+func buyu02() {
+	n, fg, x, i, t := 1, 1, 1, 1, 1
+
+	for n = 6; 1 == t; n++ {
+		for i = 0; i < 5; i++ {
+			if i == 0 {
+				x = n
+				fg = 0
+			}
+			if (x-1)%5 == 0 {
+				x = (x - 1) * 4 / 5
+				fg++
+			}
+			if fg == 5 { // fg == 2 也可以啊？
+				fmt.Printf("至少捕了%d条鱼！", n)
+				t = 0
+			}
+		}
+	}
 }
