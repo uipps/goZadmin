@@ -1,5 +1,6 @@
 // 走迷宫
 /**
+ go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\migong\migong01.go
 
 1.txt的内容：
 6 5
@@ -10,7 +11,7 @@
 0 1 0 0 1
 0 1 0 0 0
 
- */
+*/
 package main
 
 import (
@@ -24,6 +25,7 @@ func main() {
     arr := read("1.txt")
     fmt.Println("\n the arr:")
     fmt.Println(arr)
+    //os.Exit(0)
     fmt.Println("\n the arr:")
     ss := walk(arr, point{0, 0}, point{len(arr) - 1, len(arr[0]) - 1})
     fmt.Println(arr)
@@ -117,7 +119,7 @@ func read(filename string) [][]int {
         panic(e)
     }
     defer f.Close()
-    buf := make([]byte, 1024)
+    buf := make([]byte, 4096)
     n, err := f.Read(buf)
     if err != nil {
         panic(err)
@@ -132,7 +134,7 @@ func read(filename string) [][]int {
     if err != nil {
         panic(err)
     }
-    _, err = strconv.Atoi(strings.Split(ss, " ")[1])
+    col, err := strconv.Atoi(strings.Split(ss, " ")[1])
     //fmt.Println(col)
     if err != nil {
         panic(err)
@@ -141,7 +143,7 @@ func read(filename string) [][]int {
     arr := make([][]int, row)
     for k, _ := range arr {
         sArr := strings.Split(strings.TrimSpace(split[k+1]), " ")
-        arr[k] = make([]int, 5)
+        arr[k] = make([]int, col)
         for kk, _ := range arr[k] {
             i, err := strconv.Atoi(sArr[kk])
             if err != nil {
