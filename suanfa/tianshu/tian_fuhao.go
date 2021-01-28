@@ -9,6 +9,17 @@ go run tian_fuhao.go -n 5 -r 5
 go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao.go -n "5 5 5 5 5" -r 5
 go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao.go -n 5 -r 5
 
+
+二、 在五个8之间填上合适的运算符号,使计算结果 等于1至8（8和8要连加减乘除)  TODO 暂未支持括号
+(8*8+8)/8-8=1
+(8+8)/8+8-8=2
+8/8+(8+8)/8=3
+8/(8/8+8/8)=4
+8-(8+8+8)/8=5
+8-8/8-8/8=6
+8+8-8-8/8=7
+8+8-8+8-8=8
+
 */
 
 package main
@@ -27,8 +38,8 @@ var (
 )
 
 func init() {
-    flag.StringVar(&arg5Num, "n", "5 5 5 5 5", "Usage: 5 5 5 5 5") // 每一边青蛙数量
-    flag.Float64Var(&argNumResult, "r", 5, "Usage: 5")             // 每一边青蛙数量
+    flag.StringVar(&arg5Num, "n", "5 5 5 5 5", "Usage: 5 5 5 5 5") // 左边的多个数字
+    flag.Float64Var(&argNumResult, "r", 5, "Usage: 5")             // 右边结果数字
 }
 
 func main() {
@@ -74,7 +85,7 @@ func tianfuhao01() {
     count := 0;              // 计数器，统计符合条件的方案
     left, right := 0.0, 0.0; // 保存中间结果
 
-    i := []int{0, 1, 2, 3, 4}                   // 循环变量，数组i用来表示4个运算符
+    i := []int{0, 1, 1, 1, 1}                   // 循环变量，数组i用来表示4个运算符 oper[i[j]]
     oper := [5]string{" ", "+", "-", "*", "/"}; // 运算符, 1表示+ ，2 表示-,3 表示* ，4 表示/
 
     for i[1] = 1; i[1] <= 4; i[1]++ { // 循环4种运算符，1表示+ ，2 表示-,3 表示* ，4 表示/
