@@ -43,15 +43,15 @@ func init() {
 }
 
 func main() {
-    tianfuhao01()
-}
-
-func tianfuhao01() {
     flag.Parse()
 
+    tianfuhao01(arg5Num, argNumResult)
+}
+
+func tianfuhao01(arg_5Num string, arg_NumResult float64) {
     // 解析字符串
-    //fmt.Println(arg5Num)
-    arr2 := strings.Split(arg5Num, " ") // 重置
+    //fmt.Println(arg_5Num)
+    arr2 := strings.Split(arg_5Num, " ") // 重置
     //fmt.Println(arr2)
 
     // 数字字符串转成float类型
@@ -68,7 +68,7 @@ func tianfuhao01() {
         fmt.Println("参数错误，-n请提供5个数字，用空格分隔")
         return
     } else if (1 == len(arr1)) {
-        // 如果arg5Num只有一个数字，则5个自动填充
+        // 如果arg_5Num只有一个数字，则5个自动填充
         for i := 0; i < 5; i++ {
             num = append(num, arr1[0])
         }
@@ -79,7 +79,7 @@ func tianfuhao01() {
         }
     }
     //num = []float64{0.0, 5.0, 5.0, 5.0, 5.0, 5.0}; // 保存操作数
-    result := argNumResult // 保存运算式的结果值
+    result := arg_NumResult // 保存运算式的结果值
 
     sign := 0                // 累加运算时的符号
     count := 0;              // 计数器，统计符合条件的方案
