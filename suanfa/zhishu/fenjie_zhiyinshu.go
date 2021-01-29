@@ -1,5 +1,6 @@
 // 分解质因数
 // 	go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\zhishu\fenjie_zhiyinshu.go -n 407
+// 	go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/zhishu/fenjie_zhiyinshu.go -n 407
 
 package main
 
@@ -11,6 +12,7 @@ import (
 var (
     argNum01 int
     rltNum01 []int
+    runNum01 = 0
 )
 
 func init() {
@@ -34,6 +36,7 @@ func main() {
     fmt.Println("\n")
     fmt.Printf("\n 第二种方法primeNum02：\n")
     fenjiePrimeNum02(argNum01, 2) // 从2开始
+    fmt.Printf("  运算次数 %d\n", runNum01)
     fmt.Printf("\n %d 分解质因数结果为： ", argNum01)
     fmt.Println(rltNum01)
 
@@ -67,6 +70,7 @@ func fenjiePrimeNum02(n int, i int) {
     if (n <= 1) {
         return
     }
+    runNum01++
 
     if (n%i == 0) {
         n = n / i
