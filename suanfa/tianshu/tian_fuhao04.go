@@ -4,10 +4,10 @@
   下面再演示一个用枚举算法解决问题的实例，具体的题目是：在下面的算式中适当地添加“＋、－、×、÷”运算符，使等式成立（不使用括号）。
 5　5　5　5　5=5
 
-go run tian_fuhao.go -n "5 5 5 5 5" -r 5
-go run tian_fuhao.go -n 5 -r 5
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao.go -n "5 5 5 5 5" -r 5
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao.go -n 5 -r 5
+go run tian_fuhao04.go -n "5 5 5 5 5" -r 5
+go run tian_fuhao04.go -n 5 -r 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao04.go -n "5 5 5 5 5" -r 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao04.go -n 5 -r 5
 
 
 二、 在五个8之间填上合适的运算符号,使计算结果 等于1至8（8和8要连加减乘除)  TODO 暂未支持括号
@@ -32,29 +32,29 @@ import (
 )
 
 var (
-    arg5Num      string  // 5个数字，用空格分隔
-    argNumResult float64 // 结果
+    arg5Num04      string  // 5个数字，用空格分隔
+    argNumResult04 float64 // 结果
 )
 
 func init() {
-    flag.StringVar(&arg5Num, "n", "5 5 5 5 5", "Usage: 5 5 5 5 5") // 左边的多个数字
-    flag.Float64Var(&argNumResult, "r", 5, "Usage: 5")             // 右边结果数字
+    flag.StringVar(&arg5Num04, "n", "5 5 5 5 5", "Usage: 5 5 5 5 5") // 左边的多个数字
+    flag.Float64Var(&argNumResult04, "r", 5, "Usage: 5")             // 右边结果数字
 }
 
 func main() {
     flag.Parse()
 
-    tianfuhao01(arg5Num, argNumResult)
+    tianfuhao04(arg5Num04, argNumResult04)
 }
 
-func tianfuhao01(arg_5Num string, arg_NumResult float64) {
+func tianfuhao04(arg_5Num string, arg_NumResult float64) {
     // 解析字符串
     //fmt.Println(arg_5Num)
     arr2 := strings.Split(arg_5Num, " ") // 重置
     //fmt.Println(arr2)
 
-    numTotal := 5              // 左边数字个数，5个
-    blankTotal := numTotal - 1 // 左边数字之间的空白数，5个数字4个空白可以填符号
+    numTotal := 5               // 左边数字个数，5个
+    blankTotal := numTotal - 1  // 左边数字之间的空白数，5个数字4个空白可以填符号
 
     // 数字字符串转成float类型
     var arr1 []float64

@@ -22,14 +22,13 @@ import (
 )
 
 var (
-    arg4Num      string  // 3个数字，用空格分隔
+    arg4Num        string  // 3个数字，用空格分隔
     argNumResult03 float64 // 结果
-    arr03          []float64
 )
 
 func init() {
     flag.StringVar(&arg4Num, "n", "8 8 8 8", "Usage: 8 8 8 8") // 左边的多个数字
-    flag.Float64Var(&argNumResult03, "r", 6, "Usage: 8")     // 右边结果数字
+    flag.Float64Var(&argNumResult03, "r", 6, "Usage: 8")       // 右边结果数字
 }
 
 func main() {
@@ -44,10 +43,11 @@ func tianfuhao03(arg_4Num string, arg_NumResult float64) {
     arr2 := strings.Split(arg_4Num, " ") // 重置
     //fmt.Println(arr2)
 
-    numTotal := 4               // 左边数字个数，4个
-    blankTotal := numTotal - 1  // 左边数字之间的空白数，4个数字3个空白可以填符号
+    numTotal := 4              // 左边数字个数，4个
+    blankTotal := numTotal - 1 // 左边数字之间的空白数，4个数字3个空白可以填符号
 
     // 数字字符串转成float类型
+    var arr03 []float64
     for _, val := range arr2 {
         if "" == val {
             continue // 过滤空白
@@ -74,13 +74,13 @@ func tianfuhao03(arg_4Num string, arg_NumResult float64) {
     //num = []float64{0.0, 8.0, 8.0, 8.0}; // 保存操作数
     result := arg_NumResult // 保存运算式的结果值
 
-    count := 0;              // 计数器，统计符合条件的方案
+    count := 0; // 计数器，统计符合条件的方案
 
-    i := []int{0, 1, 1, 1}                   // 循环变量，数组i用来表示4个运算符 oper[i[j]]
+    i := []int{0, 1, 1, 1}                      // 循环变量，数组i用来表示4个运算符 oper[i[j]]
     oper := [5]string{" ", "+", "-", "*", "/"}; // 运算符, 1表示+ ，2 表示-,3 表示* ，4 表示/
 
-    for i[1] = 1; i[1] <= 4; i[1]++ {           // 循环4种运算符，1表示+ ，2 表示-,3 表示* ，4 表示/
-        if ((i[1] == 4) && (num[2] == 0)) {     // 运算符若是/, 则第二个运算数不能为0
+    for i[1] = 1; i[1] <= 4; i[1]++ { // 循环4种运算符，1表示+ ，2 表示-,3 表示* ，4 表示/
+        if ((i[1] == 4) && (num[2] == 0)) { // 运算符若是/, 则第二个运算数不能为0
             continue
         }
         for i[2] = 1; i[2] <= 4; i[2]++ {
@@ -91,13 +91,13 @@ func tianfuhao03(arg_4Num string, arg_NumResult float64) {
                 if ((i[3] == 4) && (num[numTotal] == 0)) {
                     continue
                 }
-                left := 0.0;                        // 保存中间结果，初始的left就是0
-                right := num[1];                    // 初始的right就是num[1]，拆分成左右因为乘除法优先级高于加减
-                sign := 1;                          // 累加运算时的符号
-                for j := 1; j <= blankTotal; j++ {  // 只有3个空白需要填符号
+                left := 0.0;                       // 保存中间结果，初始的left就是0
+                right := num[1];                   // 初始的right就是num[1]，拆分成左右因为乘除法优先级高于加减
+                sign := 1;                         // 累加运算时的符号
+                for j := 1; j <= blankTotal; j++ { // 只有3个空白需要填符号
                     switch oper[i[j]] {
                     case "+":
-                        left = left + float64(sign)*right;  // 上一轮的该符号左右两边的数据
+                        left = left + float64(sign)*right; // 上一轮的该符号左右两边的数据
                         sign = 1;
                         right = num[j+1];
                         break;
@@ -106,7 +106,7 @@ func tianfuhao03(arg_4Num string, arg_NumResult float64) {
                         sign = -1;
                         right = num[j+1];
                         break; // 通过f=-1实现减法
-                    case "*":   // 乘除法优先级高于加减，因此跟left无关了
+                    case "*": // 乘除法优先级高于加减，因此跟left无关了
                         right = right * num[j+1];
                         break; // 实现乘法
                     case "/":
@@ -118,10 +118,10 @@ func tianfuhao03(arg_4Num string, arg_NumResult float64) {
                     count++;
                     fmt.Printf("%3d：", count);
                     for j := 1; j <= blankTotal; j++ {
-                        fmt.Printf("%.f %s ", num[j], oper[i[j]]);
+                        fmt.Printf("%.f%s", num[j], oper[i[j]]);
                     }
 
-                    fmt.Printf("%.f = %.f\n", num[numTotal], result);
+                    fmt.Printf("%.f=%.f\n", num[numTotal], result);
                 }
             }
         }

@@ -41,7 +41,6 @@ import (
 var (
     arg3Num02      string  // 3个数字，用空格分隔
     argNumResult02 float64 // 结果
-    arr02          []float64
 )
 
 func init() {
@@ -61,10 +60,11 @@ func tianfuhao02(arg_3Num string, arg_NumResult float64) {
     arr2 := strings.Split(arg_3Num, " ") // 重置
     //fmt.Println(arr2)
 
-    numTotal := 3       // 左边数字个数，3个
-    blankTotal := 2     // 左边数字之间的空白数，3个数字2个空白可以填符号
+    numTotal := 3   // 左边数字个数，3个
+    blankTotal := 2 // 左边数字之间的空白数，3个数字2个空白可以填符号
 
     // 数字字符串转成float类型
+    var arr02 []float64
     for _, val := range arr2 {
         if "" == val {
             continue // 过滤空白
@@ -91,23 +91,23 @@ func tianfuhao02(arg_3Num string, arg_NumResult float64) {
     //num = []float64{0.0, 8.0, 8.0, 8.0}; // 保存操作数
     result := arg_NumResult // 保存运算式的结果值
 
-    count := 0;              // 计数器，统计符合条件的方案
+    count := 0; // 计数器，统计符合条件的方案
 
-    i := []int{0, 1, 1}                   // 循环变量，数组i用来表示4个运算符 oper[i[j]]
+    i := []int{0, 1, 1}                         // 循环变量，数组i用来表示4个运算符 oper[i[j]]
     oper := [5]string{" ", "+", "-", "*", "/"}; // 运算符, 1表示+ ，2 表示-,3 表示* ，4 表示/
 
-    for i[1] = 1; i[1] <= 4; i[1]++ {           // 循环4种运算符，1表示+ ，2 表示-,3 表示* ，4 表示/
-        if ((i[1] == 4) && (num[2] == 0)) {     // 运算符若是/, 则第二个运算数不能为0
+    for i[1] = 1; i[1] <= 4; i[1]++ { // 循环4种运算符，1表示+ ，2 表示-,3 表示* ，4 表示/
+        if ((i[1] == 4) && (num[2] == 0)) { // 运算符若是/, 则第二个运算数不能为0
             continue
         }
         for i[2] = 1; i[2] <= 4; i[2]++ {
             if ((i[2] == 4) && (num[numTotal] == 0)) {
                 continue
             }
-            left := 0.0;         // 保存中间结果
+            left := 0.0; // 保存中间结果
             right := num[1];
-            sign := 1;           // 累加运算时的符号
-            for j := 1; j <= blankTotal; j++ {   // 只有2个空白需要填符号
+            sign := 1;                         // 累加运算时的符号
+            for j := 1; j <= blankTotal; j++ { // 只有2个空白需要填符号
                 switch oper[i[j]] {
                 case "+":
                     left = left + float64(sign)*right;
@@ -131,10 +131,10 @@ func tianfuhao02(arg_3Num string, arg_NumResult float64) {
                 count++;
                 fmt.Printf("%3d：", count);
                 for j := 1; j <= blankTotal; j++ {
-                    fmt.Printf("%.f%s", num[j], oper[i[j]]);
+                    fmt.Printf("%.f %s ", num[j], oper[i[j]]);
                 }
 
-                fmt.Printf("%.f=%.f\n", num[numTotal], result);
+                fmt.Printf("%.f = %.f\n", num[numTotal], result);
             }
         }
     }
