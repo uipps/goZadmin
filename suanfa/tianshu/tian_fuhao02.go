@@ -11,6 +11,17 @@
 8 8 8=6
 9 9 9=6
 
+// TODO 暂不支持括号、阶乘符号、开平方、开3次方
+(1+1+1)!=6
+2×2+2=6
+3×3-3=6
+√4+√4+√4=6
+5+5÷5=6
+6+6-6=6
+7+7÷7=6
+8-√√(8+8)=6
+√9×√9-√9=6
+
 go run tian_fuhao02.go -n "8 8 8" -r 6
 go run tian_fuhao02.go -n 8 -r 6
 go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao02.go -n "8 8 8" -r 6
@@ -64,7 +75,7 @@ func tianfuhao02(arg_3Num string, arg_NumResult float64) {
     num := []float64{0.0}
     // 参数判断
     if (len(arr02) > 1 && len(arr02) < numTotal) {
-        fmt.Println("参数错误，-n请提供3个数字，用空格分隔")
+        fmt.Printf("参数错误，-n请提供%d个数字，用空格分隔\n", numTotal)
         return
     } else if (1 == len(arr02)) {
         // 如果arg_3Num只有一个数字，则3个自动填充
