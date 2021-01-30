@@ -1,10 +1,11 @@
 // 2048游戏.
 //     测试可玩
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game_2048\2048.go
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\game_2048\2048.go
 package main
 
 import (
     "fmt"
+    "github.com/nsf/termbox-go"
     "math/rand"
     "time"
 )
