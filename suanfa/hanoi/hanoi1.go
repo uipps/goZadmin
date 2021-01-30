@@ -19,67 +19,67 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+    "flag"
+    "fmt"
 )
 
 var (
-	hanoiNum       int    // 盘数量
-	hanoiCount     int    // 移动的次数
-	hanoiTowBegin  string // 起始塔
-	hanoiTowFuzhu  string // 辅助塔
-	hanoiTowTarget string // 目标塔
+    hanoiNum       int    // 盘数量
+    hanoiCount     int    // 移动的次数
+    hanoiTowBegin  string // 起始塔
+    hanoiTowFuzhu  string // 辅助塔
+    hanoiTowTarget string // 目标塔
 )
 
 func init() {
-	flag.IntVar(&hanoiNum, "n", 3, "Usage: 3 4 5")
-	flag.StringVar(&hanoiTowBegin, "a", "A", "Usage: A B C")
-	flag.StringVar(&hanoiTowFuzhu, "b", "B", "Usage: A B C")
-	flag.StringVar(&hanoiTowTarget, "c", "C", "Usage: A B C")
+    flag.IntVar(&hanoiNum, "n", 3, "Usage: 3 4 5")
+    flag.StringVar(&hanoiTowBegin, "a", "A", "Usage: A B C")
+    flag.StringVar(&hanoiTowFuzhu, "b", "B", "Usage: A B C")
+    flag.StringVar(&hanoiTowTarget, "c", "C", "Usage: A B C")
 }
 
 func main() {
-	flag.Parse()
+    flag.Parse()
 
-	a := hanoiTowBegin
-	b := hanoiTowFuzhu
-	c := hanoiTowTarget
+    a := hanoiTowBegin
+    b := hanoiTowFuzhu
+    c := hanoiTowTarget
 
-	// 参数校验 a,b,c必须都不相同，否则报错
-	if a == b || a == c || b == c {
-		fmt.Printf("三个柱子必须不同!\n")
-		return
-	}
+    // 参数校验 a,b,c必须都不相同，否则报错
+    if a == b || a == c || b == c {
+        fmt.Printf("三个柱子必须不同!\n")
+        return
+    }
 
-	fmt.Println("******************************************************************************************")
-	fmt.Println("这是汉诺塔问题（把A塔上编号从小号到大号的圆盘从A塔通过B辅助塔移动到C塔上去）")
-	fmt.Println("    要求移动过程中，大盘不能放在小盘上面；从上到下编号依次为： 1 2 3 ...... n-1 n")
-	fmt.Println("******************************************************************************************")
-	fmt.Printf("圆盘的个数为：%d\n\n", hanoiNum)
-	hanoiCount = 0
-	TowersOfHanoi1(hanoiNum, a, b, c)
-	fmt.Printf("\n>>移动了 %d 次，把A上的圆盘都移动到了C上\n", hanoiCount)
+    fmt.Println("******************************************************************************************")
+    fmt.Println("这是汉诺塔问题（把A塔上编号从小号到大号的圆盘从A塔通过B辅助塔移动到C塔上去）")
+    fmt.Println("    要求移动过程中，大盘不能放在小盘上面；从上到下编号依次为： 1 2 3 ...... n-1 n")
+    fmt.Println("******************************************************************************************")
+    fmt.Printf("圆盘的个数为：%d\n\n", hanoiNum)
+    hanoiCount = 0
+    TowersOfHanoi1(hanoiNum, a, b, c)
+    fmt.Printf("\n>>移动了 %d 次，把A上的圆盘都移动到了C上\n", hanoiCount)
 
-	return
+    return
 }
 
 func TowersOfHanoi1(num int, a string, b string, c string) {
-	if 1 == num {
-		printMove(num, a, c)
-		//hanoiCount++
-		//fmt.Printf("第%4d 次移动 : 把 %3d 号圆盘从 %s ---> %s  \n", hanoiCount, num, a, c);
-	} else {
-		TowersOfHanoi1(num-1, a, c, b)
+    if 1 == num {
+        printMove(num, a, c)
+        //hanoiCount++
+        //fmt.Printf("第%4d 次移动 : 把 %3d 号圆盘从 %s ---> %s  \n", hanoiCount, num, a, c);
+    } else {
+        TowersOfHanoi1(num-1, a, c, b)
 
-		printMove(num, a, c)
-		//hanoiCount++
-		//fmt.Printf("第%4d 次移动 : 把 %3d 号圆盘从 %s ---> %s  \n", hanoiCount, num, a, c);
-		TowersOfHanoi1(num-1, b, a, c)
-	}
-	return
+        printMove(num, a, c)
+        //hanoiCount++
+        //fmt.Printf("第%4d 次移动 : 把 %3d 号圆盘从 %s ---> %s  \n", hanoiCount, num, a, c);
+        TowersOfHanoi1(num-1, b, a, c)
+    }
+    return
 }
 
 func printMove(num int, a string, c string) {
-	hanoiCount++
-	fmt.Printf("第%4d 次移动 : 把 %3d 号圆盘从 %s ---> %s  \n", hanoiCount, num, a, c)
+    hanoiCount++
+    fmt.Printf("第%4d 次移动 : 把 %3d 号圆盘从 %s ---> %s  \n", hanoiCount, num, a, c)
 }

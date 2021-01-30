@@ -43,7 +43,7 @@ func main() {
         argNumRight = argNumLeft
     }
 
-	move_frog2(argNumLeft, argNumRight)
+    move_frog2(argNumLeft, argNumRight)
     //move_frog(argNumLeft, argNumRight) // 此方法来自网上，有问题，不可用
 
     return
@@ -152,7 +152,7 @@ func print_road(arrRoad []int) {
         }
     }
     fmt.Println("\n")
-	return
+    return
 }
 
 // 输出经过一次移动后青蛙的位置情况：◇ □ ◆ 表示
@@ -163,12 +163,12 @@ func print_road2(frog []int) {
     } else { //输出步数
         fmt.Printf("第%2d步：", number)
     }
-    //print_road(frog);return 	// 另外一种方式输出
+    //print_road(frog);return     // 另外一种方式输出
 
     nLen := len(frog)
     //nLen := argNumLeft + argNumRight +1
     for i := 0; i < nLen; i++ {
-        if (frog[i] == 0) { //	若为空格
+        if (frog[i] == 0) { //    若为空格
             //fmt.Printf("□")
             fmt.Printf("__ ")
         } else if (frog[i] == -1) { // 向右移动的青蛙
@@ -198,8 +198,8 @@ func initFrogArrByNum(left_num int, right_num int) []int {
 }
 
 func move_frog2(left_num int, right_num int) {
-    //frog := []int{-1, -1, -1, 0, 1, 1, 1} 		// 表示青蛙的数组
-    frog := initFrogArrByNum(left_num, right_num) 	// 获取初始化数组
+    //frog := []int{-1, -1, -1, 0, 1, 1, 1}         // 表示青蛙的数组
+    frog := initFrogArrByNum(left_num, right_num)     // 获取初始化数组
     fg_flag := true
 
     fmt.Printf("初始数组：")

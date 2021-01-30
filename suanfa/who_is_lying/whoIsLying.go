@@ -38,39 +38,39 @@ package main
 import "fmt"
 
 func main() {
-	whoIsLying()
+    whoIsLying()
 }
 
 func whoIsLying() {
-	tem := 0
+    tem := 0
 
-	for a := 1; a >= 0; a-- {
-		for b := 1; b >= 0; b-- {
-			for c := 1; c >= 0; c-- {
-				// 张三a说李四b在说谎; 李四b说王五c在说谎; 王五说张三和李四都在说谎
-				if (a+b == 1) && (b+c == 1) && (a+b+c == 1) {
-					if 1 == a {
-						fmt.Println("张三没说谎")
-					} else {
-						fmt.Println("张三说谎")
-					}
-					if 1 == b {
-						fmt.Println("李四没说谎")
-					} else {
-						fmt.Println("李四说谎")
-					}
-					if 1 == c {
-						fmt.Println("王五没说谎")
-					} else {
-						fmt.Println("王五说谎")
-					}
-					tem = 1
-				}
-			}
-		}
-	}
+    for a := 1; a >= 0; a-- {
+        for b := 1; b >= 0; b-- {
+            for c := 1; c >= 0; c-- {
+                // 张三a说李四b在说谎; 李四b说王五c在说谎; 王五说张三和李四都在说谎
+                if (a+b == 1) && (b+c == 1) && (a+b+c == 1) {
+                    if 1 == a {
+                        fmt.Println("张三没说谎")
+                    } else {
+                        fmt.Println("张三说谎")
+                    }
+                    if 1 == b {
+                        fmt.Println("李四没说谎")
+                    } else {
+                        fmt.Println("李四说谎")
+                    }
+                    if 1 == c {
+                        fmt.Println("王五没说谎")
+                    } else {
+                        fmt.Println("王五说谎")
+                    }
+                    tem = 1
+                }
+            }
+        }
+    }
 
-	if 0 == tem {
-		fmt.Printf("三个人都说谎了！")
-	}
+    if 0 == tem {
+        fmt.Printf("三个人都说谎了！")
+    }
 }

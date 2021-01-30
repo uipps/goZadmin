@@ -28,34 +28,34 @@ a 10 =1
 package main
 
 import (
-	"flag"
-	"fmt"
+    "flag"
+    "fmt"
 )
 
 var (
-	dayNum01 int
+    dayNum01 int
 )
 
 func init() {
-	flag.IntVar(&dayNum01, "n", 10, "Usage: 10 2")
+    flag.IntVar(&dayNum01, "n", 10, "Usage: 10 2")
 }
 
 func main() {
-	flag.Parse()
+    flag.Parse()
 
-	sum := monkeyEatPeach(dayNum01)
-	fmt.Printf("最初的桃子数:%d\n", sum)
+    sum := monkeyEatPeach(dayNum01)
+    fmt.Printf("最初的桃子数:%d\n", sum)
 }
 
 // 第十天看成是倒数第一天，编号为1，依次为倒数第二天、倒数第三天
 func peach01(n int) int {
-	if n == 1 {
-		return 1 // 倒数第一天（第十天），只有1个桃子
-	} else {
-		return (peach01(n-1) + 1) * 2
-	}
+    if n == 1 {
+        return 1 // 倒数第一天（第十天），只有1个桃子
+    } else {
+        return (peach01(n-1) + 1) * 2
+    }
 }
 
 func monkeyEatPeach(dayNum int) int {
-	return peach01(dayNum)
+    return peach01(dayNum)
 }
