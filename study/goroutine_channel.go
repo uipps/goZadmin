@@ -4,15 +4,15 @@ package main
 import "fmt"
 
 func main() {
-	oneSimpleTest()
+    oneSimpleTest()
 
 }
 
 func oneSimpleTest()  {
-	ch := make(chan string)
+    ch := make(chan string)
 
-	go func() { ch <- "ping" }()
+    go func() { ch <- "ping" }()
 
-	msg := <-ch
-	fmt.Println(msg)
+    msg := <-ch
+    fmt.Println(msg)
 }
