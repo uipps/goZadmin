@@ -40,26 +40,26 @@ func main() {
 }
 
 func Output() { // 显示各堆石子的状态
-    fmt.Printf("各堆剩下的石子数量:\n");
+    fmt.Printf("各堆剩下的石子数量:\n")
     for i := 1; i <= num; i++ {
         fmt.Printf("第%2d堆剩下：%d \n", i, heap[i])
-    };
+    }
 }
 
 func remain() int { //统计剩下的石子总数
-    s := 0;
+    s := 0
     for i := 1; i <= num; i++ {
         s += heap[i]
-    };
-    return s;
+    }
+    return s
 }
 
 func xorall() int { //按位异或的结果
-    s := 0;
+    s := 0
     for i := 1; i <= num; i++ {
         s ^= heap[i]
-    };
-    return s;
+    }
+    return s
 }
 
 // 规则1
@@ -68,61 +68,61 @@ func guize01() {
 
     fmt.Printf(" 游戏规则是： 有n堆石子，每堆有若干石子，数量不一定相同，两人(游戏者与计算机)轮流从任一堆中拿走任意数量的石子，拿走最后一个石子者为胜利方。\n\n")
 
-    fmt.Printf("输入石子的堆数：");
-    fmt.Scan(&num);
+    fmt.Printf("输入石子的堆数：")
+    fmt.Scan(&num)
     if (num < 2) {
-        fmt.Printf("至少应该有2堆石子!\n");
+        fmt.Printf("至少应该有2堆石子!\n")
         return
     }
 
     // 初始化切片
     for i := 0; i <= num; i++ {
         heap = append(heap, 0)
-    };
+    }
 
     for i := 1; i <= num; i++ {
-        fmt.Printf("输入第%d堆石子的数量：", i);
-        fmt.Scan(&heap[i]);
+        fmt.Printf("输入第%d堆石子的数量：", i)
+        fmt.Scan(&heap[i])
     }
 
     for remain() > 0 { //剩余石子大于0
         if (xorall() == 0) {
             for i := 1; i <= num; i++ { //从一堆石子中取一粒
                 if (heap[i] > 0) {
-                    fmt.Printf("\n计算机从第%2d堆中拿1粒。\n", i);
-                    heap[i]--;
-                    break;
+                    fmt.Printf("\n计算机从第%2d堆中拿1粒。\n", i)
+                    heap[i]--
+                    break
                 }
             }
         } else {
             for i := 1; i <= num; i++ {
-                s := heap[i] - (xorall() ^ heap[i]); //计算要取的石子数量
+                s := heap[i] - (xorall() ^ heap[i]) //计算要取的石子数量
                 if (s > 0) {
-                    fmt.Printf("\n计算机从第%2d堆中拿%d粒。\n", i, s);
-                    heap[i] ^= xorall();
-                    break;
+                    fmt.Printf("\n计算机从第%2d堆中拿%d粒。\n", i, s)
+                    heap[i] ^= xorall()
+                    break
                 }
             }
         }
         if (remain() == 0) {
-            fmt.Printf("\n计算机胜");
-            break;
+            fmt.Printf("\n计算机胜")
+            break
         }
-        Output(); //显示剩余的石堆情况
+        Output() //显示剩余的石堆情况
 
         for {
-            fmt.Printf("\n输入你的选择（堆 数量）：");
-            fmt.Scanf("%d %d", &h, &t);
+            fmt.Printf("\n输入你的选择（堆 数量）：")
+            fmt.Scanf("%d %d", &h, &t)
             if ((h >= 1) && (h <= num) && (heap[h] >= t)) {
-                heap[h] -= t;
+                heap[h] -= t
                 break
             } else {
                 fmt.Printf("\n输入数据出错，重新输入！\n")
             }
         }
         if (remain() == 0) {
-            fmt.Printf("\n恭喜你获胜");
-            break;
+            fmt.Printf("\n恭喜你获胜")
+            break
         }
     }
 
