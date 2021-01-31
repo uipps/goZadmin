@@ -11,6 +11,7 @@
 
 //  3.   π/2 = 2/1*2/3 * 4/3*4/5 * 6/5*6/7 * .....
 //  4.   任意位数的π，依然利用上面2的公式进行任意位数的计算
+//  5.   π/4 = 1- 1/3 + 1/5 - 1/7 + 1/9 - 1/11......   (pi02.go里面有计算)
 
 // go run pi01.go -n 1111
 // go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\pai\pi01.go -n 1111
@@ -24,6 +25,7 @@ import (
     "math"
     "runtime"
     "time"
+    "github.com/uipps/goZadmin/suanfa/common"
 )
 
 var (
@@ -63,7 +65,7 @@ func main() {
 
 // 任意位数的PI π
 func pai04(xiaoshuLeng int) {
-    xiaoshuLeng += 2 // 增加2位精度
+    xiaoshuLeng += 2 // 十位个位占用2个; 这里也可以是10，最小是2，越大最后的数约精确
 
     flag01 := 1
     count := 0
@@ -72,10 +74,8 @@ func pai04(xiaoshuLeng int) {
     fenmu := 3
 
     // 初始化
-    for i := 0; i < xiaoshuLeng; i++ {
-        pi_arr = append(pi_arr, 0)
-        temp_arr = append(temp_arr, 0)
-    }
+    pi_arr := make([]int, xiaoshuLeng)
+    temp_arr := make([]int, xiaoshuLeng)
     pi_arr[1] = 2
     temp_arr[1] = 2
     //fmt.Println(pi_arr)
@@ -136,27 +136,9 @@ func pai04(xiaoshuLeng int) {
 
     // 输出数据，数字太长，因此格式化输出
     fmt.Printf("\n计算了%d次\n", count)
-    outPrintFmt(pi_arr, xiaoshuLeng)
+    common.OutPrintFmt(pi_arr, xiaoshuLen, 2, 3, 1)
 
     return
-}
-
-func outPrintFmt(a_pi_arr []int, xiaoshuLeng int) {
-    fmt.Printf("\t---第1-1000位小数---\n")
-    fmt.Printf("PI=%d.", a_pi_arr[1])
-    // 小数部分要循环输出
-    for i := 2; i < xiaoshuLeng; i++ {
-        if i > 2 && (i-2)%10 == 0 { // 每十位输入一个空格
-            fmt.Print(" ")
-        }
-        if i > 2 && (i-2)%50 == 0 { // 每50位换行
-            fmt.Println("")
-        }
-        if i > 2 && (i-2)%1000 == 0 { // 每1000位, 显示一个提示
-            fmt.Printf("\t---显示第%d-%d位小数---\n", (i-2)/1000*1000+1, ((i-2)/1000+1)*1000)
-        }
-        fmt.Printf("%d", a_pi_arr[i]) // 输出一位小数
-    }
 }
 
 // 公式2计算方式, 两边边都乘以2，π = 2+ 2/3 + 2/3*2/5 + 2/3*2/5*3/7 + 2/3*2/5*3/7*4/9 +......
