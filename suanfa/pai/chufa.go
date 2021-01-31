@@ -20,9 +20,9 @@ var (
 )
 
 func init() {
-    flag.IntVar(&fenZi1, "n", 10, "Usage: 1")
-    flag.IntVar(&fenMu1, "m", 10, "Usage: 7 13")
-    flag.IntVar(&xiaoshuLeng1, "l", 10, "Usage: 100 1000")
+    flag.IntVar(&fenZi1, "n", 1, "Usage: 1")
+    flag.IntVar(&fenMu1, "m", 7, "Usage: 7 13")
+    flag.IntVar(&xiaoshuLeng1, "l", 100, "Usage: 100 1000")
 }
 
 func main() {
@@ -63,18 +63,6 @@ func chuFa01(fenzi_orig int, fenmu int, xiaoshuLeng int) {
         k_arr1[i] = fenzi / fenmu
         fenzi = fenzi % fenmu * 10
     }
-
-    // 最后一位四舍五入, 也可以不需要四舍五入
-    //if (fenzi/fenmu > 4) {
-    //    k_arr1[xiaoshuLeng]++
-    //}
-
-    // 永远不会执行，除了第0项可能大于9
-    /*for i := xiaoshuLeng; i > 0; i-- {
-        if (k_arr1[i] > 9) {
-            fmt.Printf("第%d位大于9, 其值为%d\n", i, k_arr1[i])
-        }
-    }*/
 
     // 输出数据，数字太长，因此格式化输出
     fmt.Printf("\t---第1-1000位小数---\n")
