@@ -9,6 +9,7 @@ package main
 import (
     "flag"
     "fmt"
+    "github.com/uipps/goZadmin/suanfa/common"
     "time"
 )
 
@@ -52,10 +53,8 @@ func chuFa01(fenzi_orig int, fenmu int, xiaoshuLeng int) {
     // xiaoshuLeng += 2
     fenzi := fenzi_orig
 
-    // 初始化，全部置为0， 增加2位精度
-    for i := 0; i < xiaoshuLeng+2; i++ {
-        k_arr1 = append(k_arr1, 0)
-    }
+    // 初始化，全部置为0， 整数部分占用一位，所以实际申请 xiaoshuLeng+1 位长度
+    k_arr1 = make([]int, xiaoshuLeng+1)
 
     ///// 开始计算
     // 余数乘以10，然后再继续除以除数，不断往后推算即可
@@ -63,24 +62,10 @@ func chuFa01(fenzi_orig int, fenmu int, xiaoshuLeng int) {
         k_arr1[i] = fenzi / fenmu
         fenzi = fenzi % fenmu * 10
     }
+    //fmt.Println(k_arr1)
 
     // 输出数据，数字太长，因此格式化输出
-    fmt.Printf("\t---第1-1000位小数---\n")
-    fmt.Printf("%d/%d=\n%d.", fenzi_orig, fenmu, k_arr1[0])
-    // 小数部分要循环输出
-    n := 1 // 小数点开始的序号
-    for i := n; i < xiaoshuLeng; i++ {
-        if i > n && (i-n)%10 == 0 { // 每十位输入一个空格
-            fmt.Print(" ")
-        }
-        if i > n && (i-n)%50 == 0 { // 每50位换行
-            fmt.Println("")
-        }
-        if i > n && (i-n)%1000 == 0 { // 每1000位, 显示一个提示
-            fmt.Printf("\t---显示第%d-%d位小数---\n", (i-n)+1, i-n+1000)
-        }
-        fmt.Printf("%d", k_arr1[i]) // 输出一位小数
-    }
+    common.OutPrintFmt(k_arr1, xiaoshuLeng, 1, fenzi_orig, fenmu)
 
     return
 }
