@@ -2,19 +2,26 @@ package common
 
 import "fmt"
 
-func OutPrintFmt(a_pi_arr []int, xiaoshuLeng int) {
+func OutPrintFmt(a_pi_arr []int, xiaoshuLeng int, n int, fenzi int, fenmu int) {
 	fmt.Printf("\t---第1-1000位小数---\n")
-	fmt.Printf("PI=%d.", a_pi_arr[1])
+
+	if (1 == fenmu && fenzi == 3) {
+		fmt.Printf("PI=%d.", a_pi_arr[n-1])	// 计算π
+	} else {
+		fmt.Printf("%d/%d=%d.", fenzi, fenmu, a_pi_arr[n-1])
+	}
+
 	// 小数部分要循环输出
-	for i := 2; i < xiaoshuLeng; i++ {
-		if i > 2 && (i-2)%10 == 0 { // 每十位输入一个空格
+	//n := 1 // 小数点开始的序号
+	for i := n; i < xiaoshuLeng+n; i++ {
+		if i > n && (i-n)%10 == 0 { // 每十位输入一个空格
 			fmt.Print(" ")
 		}
-		if i > 2 && (i-2)%50 == 0 { // 每50位换行
+		if i > n && (i-n)%50 == 0 { // 每50位换行
 			fmt.Println("")
 		}
-		if i > 2 && (i-2)%1000 == 0 { // 每1000位, 显示一个提示
-			fmt.Printf("\t---显示第%d-%d位小数---\n", (i-2)/1000*1000+1, ((i-2)/1000+1)*1000)
+		if i > n && (i-n)%1000 == 0 { // 每1000位, 显示一个提示
+			fmt.Printf("\t---显示第%d-%d位小数---\n", (i-n)+1, i-n+1000)
 		}
 		fmt.Printf("%d", a_pi_arr[i]) // 输出一位小数
 	}
