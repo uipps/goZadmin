@@ -12,7 +12,7 @@
 //
 // go run pi02.go -n 1111
 // go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\pai\pi02.go -n 1111
-// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/pai/pi02.go -n 1111
+// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/pai/pi02.go -n 1111 -c 1000000
 
 package main
 
@@ -25,10 +25,12 @@ import (
 
 var (
 	xiaoshuLen2 int // 小数点后多少位数
+	xunHuanCi2 int 	// 分母n(n+2)的n值，也是多少项
 )
 
 func init() {
 	flag.IntVar(&xiaoshuLen2, "n", 100, "Usage: 100 1000")
+	flag.IntVar(&xunHuanCi2, "c", 1000000, "Usage: 100 1000")
 }
 
 func main() {
@@ -67,11 +69,11 @@ func pai05(xiaoshuLeng int) {
 
 	// 循环计算
 	flag01 := 1 // 用于提前退出循环
-	for flag01 > 0 && count < 1000000 {
+	for flag01 > 0 && count < xunHuanCi2 {
 		// 计算每项的值，采用任意位数组的方式存放到temp_arr, 如8/3，则temp_arr[0] = 2,temp_arr[1]=6.....
 		fenzi = 8
-		//fen_mu_new := fenmu * (fenmu - 2)  // 分母通式：n(n-2), 初始n=3，以后逐渐+4； 暂未超过整数最大范围2^63, 改进为2次除耗时更长
-		fen_mu_new := fenmu
+		fen_mu_new := fenmu * (fenmu - 2)  // 分母通式：n(n-2), 初始n=3，以后逐渐+4； 暂未超过整数最大范围2^63, 改进为2次除耗时更长
+		//fen_mu_new := fenmu
 		for i := 0; i < xiaoshuLeng; i++ { // 从高位到低位，记录每项的整数和小数值（小数点位数到xiaoshuLeng位）
 			temp_arr[i] = fenzi / fen_mu_new
 			fenzi = (fenzi % fen_mu_new) *10
