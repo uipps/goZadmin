@@ -26,3 +26,12 @@ func OutPrintFmt(a_pi_arr []int, xiaoshuLeng int, n int, fenzi int, fenmu int) {
 		fmt.Printf("%d", a_pi_arr[i]) // 输出一位小数
 	}
 }
+
+func Int_in_array(slice []int, val int) (int, bool) {
+	for key, item := range slice {
+		if item == val {
+			return key, true
+		}
+	}
+	return -1, false
+}
