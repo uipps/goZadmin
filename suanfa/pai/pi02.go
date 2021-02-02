@@ -1,5 +1,5 @@
 // 计算圆周率π
-//  有很多计算方法, 任意位
+//  有很多计算方法, 任意位 (此方法收敛太慢，不合适)
 //  5.   π/4 = 1- 1/3 + 1/5 - 1/7 + 1/9 - 1/11......
 //         通式规律就是： a[0] = 1
 //                      a[1] = pow((-1), 1)*1/3
@@ -67,18 +67,24 @@ func pai05(xiaoshuLeng int) {
 
 	// 循环计算
 	flag01 := 1 // 用于提前退出循环
-	for flag01 > 0 && count < 3 {
+	for flag01 > 0 && count < 1000000 {
 		// 计算每项的值，采用任意位数组的方式存放到temp_arr, 如8/3，则temp_arr[0] = 2,temp_arr[1]=6.....
 		fenzi = 8
 		fen_mu_new := fenmu * (fenmu - 2)  // 分母通式：n(n-2), 初始n=3，以后逐渐+4, TODO 暂未超过整数最大范围2^63, 可改进为2次除
+		//fen_mu_new := fenmu
 		for i := 0; i < xiaoshuLeng; i++ { // 从高位到低位，记录每项的整数和小数值（小数点位数到xiaoshuLeng位）
 			temp_arr[i] = fenzi / fen_mu_new
 			fenzi = (fenzi % fen_mu_new) *10
 		}
+		// 在上次基础上，除以fenmu - 2
+		//fen_mu_new = fenmu - 2
+		//yushu := 0
+		//for i := 0; i < xiaoshuLeng; i++ {
+		//    fenzi = temp_arr[i] + yushu	* 10		// 对上次结果的数组进行除法运算，
+		//	temp_arr[i] = fenzi / fen_mu_new
+		//	yushu = (fenzi % fen_mu_new)
+		//}
 		// temp_arr[i]可能全部为0，当fenmu足够大的时候
-		fmt.Printf("temp_arr: ")
-		fmt.Println(temp_arr)
-		//fmt.Println("\n")
 
 		flag01 = 0                             // 清除标记
 		for i := xiaoshuLeng - 1; i > 0; i-- { // 从低位到高位, 将计算结果累加(i越小是高位，i越大是低位)
@@ -87,9 +93,6 @@ func pai05(xiaoshuLeng int) {
 			pi_arr[i-1] += result / 10        // 向高位进位(i越小是高位)
 			flag01 |= temp_arr[i]             // 若temp中的数全部为0，退出循环
 		}
-		fmt.Printf("pi_arr: ")
-		fmt.Println(pi_arr)
-		fmt.Println("\n\n")
 		count++    // 记录大圈循环次数
 		fenmu += 4 // 累加分母
 	}
