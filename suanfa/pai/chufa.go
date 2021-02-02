@@ -6,8 +6,8 @@
 //         1/95 = 0.(0105263157894736842)
 
 // go run chufa.go -n 1 -m 7 -l 100
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\pai\chufa.go -n 1 -m 7 -l 100
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\pai\chufa.go -n 201 -m 101 -l 1111
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\pai\chufa.go -n 1 -m 7 -l 100
+// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/pai/chufa.go -n 201 -m 101 -l 1111
 
 package main
 
