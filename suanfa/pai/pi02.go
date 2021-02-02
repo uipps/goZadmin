@@ -70,13 +70,13 @@ func pai05(xiaoshuLeng int) {
 	for flag01 > 0 && count < 1000000 {
 		// 计算每项的值，采用任意位数组的方式存放到temp_arr, 如8/3，则temp_arr[0] = 2,temp_arr[1]=6.....
 		fenzi = 8
-		fen_mu_new := fenmu * (fenmu - 2)  // 分母通式：n(n-2), 初始n=3，以后逐渐+4, TODO 暂未超过整数最大范围2^63, 可改进为2次除
-		//fen_mu_new := fenmu
+		//fen_mu_new := fenmu * (fenmu - 2)  // 分母通式：n(n-2), 初始n=3，以后逐渐+4； 暂未超过整数最大范围2^63, 改进为2次除耗时更长
+		fen_mu_new := fenmu
 		for i := 0; i < xiaoshuLeng; i++ { // 从高位到低位，记录每项的整数和小数值（小数点位数到xiaoshuLeng位）
 			temp_arr[i] = fenzi / fen_mu_new
 			fenzi = (fenzi % fen_mu_new) *10
 		}
-		// 在上次基础上，除以fenmu - 2
+		// 在上次基础上，除以fenmu - 2 ; 两次相除耗时更长，还是用上面一次相除
 		//fen_mu_new = fenmu - 2
 		//yushu := 0
 		//for i := 0; i < xiaoshuLeng; i++ {
