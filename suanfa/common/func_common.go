@@ -7,6 +7,8 @@ func OutPrintFmt(a_pi_arr []int, xiaoshuLeng int, n int, fenzi int, fenmu int) {
 
 	if (1 == fenmu && fenzi == 3) {
 		fmt.Printf("PI=%d.", a_pi_arr[n-1])	// 计算π
+	} else if (1 == fenmu && fenzi == 2) {
+		fmt.Printf("e=%d.", a_pi_arr[n-1])	// 计算e
 	} else {
 		fmt.Printf("%d/%d=%d.", fenzi, fenmu, a_pi_arr[n-1])
 	}
