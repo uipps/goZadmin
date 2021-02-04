@@ -14,8 +14,8 @@
 //  5.   π/4 = 1- 1/3 + 1/5 - 1/7 + 1/9 - 1/11......   (pi02.go里面有计算)
 
 // go run pi01.go -n 1111
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\pai\pi01.go -n 1111
-// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/pai/pi01.go -n 1111
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\pai\pi01.go -n 1111
+// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/math/pai/pi01.go -n 1111
 
 package main
 

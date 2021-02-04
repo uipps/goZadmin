@@ -1,5 +1,5 @@
 // 房贷利息计算器，2021.1.9
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\fangdai.go -c 480000 -m 240 -r 0.0441 -f 1
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\fangdai_jisuan\fangdai.go -c 480000 -m 240 -r 0.0441 -f 1
 // go run fangdai.go -c 100000 -m 12 -r 0.05 -f 0
 
 //  参考PHP代码，php E:/chengfeng/OneDrive/chengfeng/95533-建设银行/fangdai.php -c 480000 -m 240 -r 0.0441 -f 0
@@ -42,11 +42,11 @@ func main() {
 
     fangshi(capital, month, interestRateYear, fangan)
 
-    //continueDo = 1
+    continueDo = 0
     // 继续还是退出
-    fmt.Println("\n")
-    fmt.Println("继续计算还是退出，输入1表示继续，输入其他数字表示退出，非1的数都退出)")
-    fmt.Scan(&continueDo)
+    //fmt.Println("\n")
+    //fmt.Println("继续计算还是退出，输入1表示继续，输入其他数字表示退出，非1的数都退出)")
+    //fmt.Scan(&continueDo)
 
     // do-while循环
     for {
