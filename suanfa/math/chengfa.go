@@ -60,18 +60,26 @@ func main() {
     fmt.Println(rlt)
     fmt.Println("\n")
 
-    fmt.Printf("\n  计算 %s x %s 的值，直接转float64，计算结果为：\n", chengshu1, chengshu2)
-    rlt_float64 := chengFa04(chengshu1, chengshu2)
-    fmt.Println(rlt_float64)
-    fmt.Printf("%f , 非科学计数法，需手动改位数.100f这样的. \n", rlt_float64)
-    fmt.Println("\n")
-
     // 如果数字太长，考虑格式化输出
     //common.OutPrintFmt(k_arr1, xiaoshuLeng, 1, fenzi_orig, fenmu)
     fmt.Printf("\n  计算 %s x %s 的值，第二种方法(不适用小数和负数)，结果为：\n", chengshu1, chengshu2)
     rlt = chengFa02(chengshu1, chengshu2)
     fmt.Println(rlt)
     fmt.Println("\n")
+
+    fmt.Printf("\n  使用PHP的bcmul方法，结果为：\n")
+    command_str := fmt.Sprintf("echo bcmul('%s', '%s');", chengshu1, chengshu2)
+    rlt = common.ExecPHP(command_str)
+    //fmt.Printf("%T , '%s' , \n", rlt, rlt)
+    fmt.Println(rlt)
+    fmt.Println("\n")
+
+    fmt.Printf("\n  计算 %s x %s 的值，直接转float64，计算结果为：\n", chengshu1, chengshu2)
+    rlt_float64 := chengFa04(chengshu1, chengshu2)
+    fmt.Println(rlt_float64)
+    fmt.Printf("%f , 非科学计数法，需手动改位数.100f这样的. \n", rlt_float64)
+    fmt.Println("\n")
+
 
     // 如果数字太长，考虑格式化输出
     //common.OutPrintFmt(k_arr1, xiaoshuLeng, 1, fenzi_orig, fenmu)

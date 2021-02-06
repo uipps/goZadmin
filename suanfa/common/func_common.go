@@ -2,6 +2,7 @@ package common
 
 import (
     "fmt"
+    "os/exec"
     "regexp"
     "strconv"
     "strings"
@@ -151,4 +152,16 @@ func ReverseNum(r string) string {
         j--
     }
     return string(c)
+}
+
+// exec PHP code, unix和windows均可
+func ExecPHP(cmd_str string) (rlt string)  {
+    cmd := exec.Command("php", "-r", cmd_str) // /usr/bin/php -- unix ; windows -- php
+    bytes, err := cmd.Output()
+    if err != nil {
+        fmt.Println(err)
+        return rlt
+    }
+    rlt = string(bytes)
+    return rlt
 }
