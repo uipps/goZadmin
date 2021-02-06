@@ -4,6 +4,9 @@
 // go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\chengfa.go -n 201 -m 134
 // go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/math/chengfa.go -n 201 -m 134
 
+// 2个非常大的数字，310位，超出了float64范围
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\chengfa.go -n 8888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555558888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555559999999999 -m 8888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555558888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555559999999999
+
 package main
 
 import (
@@ -43,11 +46,11 @@ func forexample01() {
 func main() {
     flag.Parse()
 
-    // 参数校验，是否数字(包括小数)
-    if (!common.Is_numeric(chengshu1) || !common.Is_numeric(chengshu2)) {
-        fmt.Println("乘数必须都是数字!")
-        return
-    }
+    // 参数校验，是否数字(包括小数), 超过了float64范围的数字，直接退出了
+    //if (!common.Is_numeric(chengshu1) || !common.Is_numeric(chengshu2)) {
+    //    fmt.Println("乘数必须都是数字!")
+    //    return
+    //}
 
     startTime := time.Now().UnixNano()
     fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
