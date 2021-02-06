@@ -47,10 +47,10 @@ func main() {
     flag.Parse()
 
     // 参数校验，是否数字(包括小数), 超过了float64范围的数字，直接退出了
-    //if (!common.Is_numeric(chengshu1) || !common.Is_numeric(chengshu2)) {
-    //    fmt.Println("乘数必须都是数字!")
-    //    return
-    //}
+    if (!common.Is_numeric(chengshu1) || !common.Is_numeric(chengshu2)) {
+       fmt.Println("乘数必须都是数字!")
+       return
+    }
 
     startTime := time.Now().UnixNano()
     fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))

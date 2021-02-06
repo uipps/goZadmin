@@ -65,16 +65,19 @@ func Int_in_array(slice []int, val int) (int, bool) {
 
 // 判断字符串是否数字，包括小数点。	float64的最大正数为: 1.797693134862315708145274237317043567981e+308；
 // 								float64的最小非负数: 4.940656458412465441765687928682213723651e-324
-func Is_numeric(s string) bool {
+// TODO ：超出了float64范围的数字就会出错
+func Is_numeric_float(s string) bool {
     _, err := strconv.ParseFloat(s, 64)
     return err == nil
 }
 
-// 判断是否数字（101.45fdfd判断不正确，舍弃此方法）
-func IsNum2_to_delete(str string) bool {
-    pattern := "\\d(\\d+)?(\\.)?(\\d+)?" //反斜杠要转义
-    result, _ := regexp.MatchString(pattern, str)
-    if (result) {
+// 判断是否数字（101.45fdfd判断）
+func Is_numeric(str1 string) bool {
+    //pattern := "(-)?\\d(\\d+)?(\\.)?(\\d+)?" //反斜杠要转义
+    pattern := `(-)?\d(\d+)?(\.)?(\d+)?`
+    reg := regexp.MustCompile(pattern)
+    str_new := reg.FindString(str1)
+    if (str_new == str1) {
         return true
     }
     return false
