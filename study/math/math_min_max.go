@@ -1,3 +1,4 @@
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\study\math\math_min_max.go
 package main
 
 import (
@@ -11,6 +12,8 @@ func main() {
 	fmt.Println("int16 range:", math.MinInt16, math.MaxInt16)
 	fmt.Println("int32 range:", math.MinInt32, math.MaxInt32)
 	fmt.Println("int64 range:", math.MinInt64, math.MaxInt64)
+	fmt.Println("float32 range:", math.MaxFloat32)
+	fmt.Println("float32 range:", math.MaxFloat64)
 
 	// 初始化一个32位整型值
 	var a int32 = 1047483647
