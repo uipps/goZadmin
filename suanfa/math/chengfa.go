@@ -11,6 +11,7 @@ import (
     "fmt"
     "github.com/syyongx/php2go"
     "github.com/uipps/goZadmin/suanfa/common"
+    "strconv"
     "strings"
     "time"
 )
@@ -51,9 +52,15 @@ func main() {
     startTime := time.Now().UnixNano()
     fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
 
-    fmt.Printf("\n  计算 %s x %s 的值，结果为：\n", chengshu1, chengshu2)
+    fmt.Printf("\n  计算 %s x %s 的值，第一种方法(任意位，负数或小数均可)，结果为：\n", chengshu1, chengshu2)
     rlt := chengFa01(chengshu1, chengshu2)
     fmt.Println(rlt)
+    fmt.Println("\n")
+
+    fmt.Printf("\n  计算 %s x %s 的值，直接转float64，计算结果为：\n", chengshu1, chengshu2)
+    rlt_float64 := chengFa04(chengshu1, chengshu2)
+    fmt.Println(rlt_float64)
+    fmt.Printf("%f , 非科学计数法，需手动改位数.100f这样的. \n", rlt_float64)
     fmt.Println("\n")
 
     // 如果数字太长，考虑格式化输出
@@ -63,11 +70,25 @@ func main() {
     fmt.Println(rlt)
     fmt.Println("\n")
 
+    // 如果数字太长，考虑格式化输出
+    //common.OutPrintFmt(k_arr1, xiaoshuLeng, 1, fenzi_orig, fenmu)
+    //fmt.Printf("\n  计算 %s x %s 的值，第三种方法(计算错误，废弃此方法)\n", chengshu1, chengshu2)
+    //rlt = chengFa03(chengshu1, chengshu2)
+    //fmt.Println(rlt)
+    //fmt.Println("\n")
+
     // 执行时间计算
     endTime := time.Now().UnixNano()
     fmt.Printf("  endTime：%d, %s\n", endTime/1e3, time.Unix(0, endTime).Format("2006-01-02 15:04:05"))
     nanoSeconds := float64(endTime-startTime) / 1e3
     fmt.Println("spendTime：", nanoSeconds)
+}
+
+// 转化为float64位进行计算
+func chengFa04(chengshuA, chengshuB string) (result float64) {
+    chengA, _ := strconv.ParseFloat(chengshuA, 64)
+    chengB, _ := strconv.ParseFloat(chengshuB, 64)
+    return  chengA * chengB
 }
 
 // 任意位数乘法, 包括小数相乘
@@ -141,13 +162,13 @@ func chengFa01(chengshuA, chengshuB string) (result string) {
         } else {
             result += string(temp + '0')
         }
-        if (xiaoshu_l > 0 && i == xiaoshu_l - 1) {
-            result += "."   // 添加小数点
+        if (xiaoshu_l > 0 && i == xiaoshu_l-1) {
+            result += "." // 添加小数点
         }
     }
     // 6. 删除前导0，这里是先删除右侧0，因为还是反转状态
     result = php2go.Rtrim(result, "0")
-    result = common.ReverseStr(result)  // 将字符串反转
+    result = common.ReverseStr(result) // 将字符串反转
 
     // 7. 第一位如果是小数点，则首位补0
     xiaoshu_l = php2go.Strpos(result, ".", 0)
@@ -208,62 +229,4 @@ func chengFa02(a, b string) (reuslt string) {
 
 // 参考： https://www.cnblogs.com/PasserByOne/p/12019885.html
 // 运行结果错误，废弃
-func chengFa03(str1, str2 string) (result string) {
-
-    if len(str1) == 0 && len(str2) == 0 {
-        result = "0"
-        return
-    }
-
-    var index1 = len(str1) - 1
-    var index2 = len(str2) - 1
-    var left int
-
-    for index1 >= 0 && index2 >= 0 {
-        c1 := str1[index1] - '0'
-        c2 := str2[index2] - '0'
-
-        sum := int(c1) + int(c2) + left
-        if sum >= 10 {
-            left = 1
-        } else {
-            left = 0
-        }
-        c3 := (sum % 10) + '0'
-        result = fmt.Sprintf("%c%s", c3, result)
-        index1--
-        index2--
-    }
-
-    for index1 >= 0 {
-        c1 := str1[index1] - '0'
-        sum := int(c1) + left
-        if sum >= 10 {
-            left = 1
-        } else {
-            left = 0
-        }
-        c3 := (sum % 10) + '0'
-
-        result = fmt.Sprintf("%c%s", c3, result)
-        index1--
-    }
-
-    for index2 >= 0 {
-        c1 := str2[index2] - '0'
-        sum := int(c1) + left
-        if sum >= 10 {
-            left = 1
-        } else {
-            left = 0
-        }
-        c3 := (sum % 10) + '0'
-        result = fmt.Sprintf("%c%s", c3, result)
-        index2--
-    }
-
-    if left == 1 {
-        result = fmt.Sprintf("1%s", result)
-    }
-    return
-}
+//func chengFa03(str1, str2 string) (result string) {}
