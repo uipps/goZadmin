@@ -165,3 +165,11 @@ func ExecPHP(cmd_str string) (rlt string)  {
     rlt = string(bytes)
     return rlt
 }
+
+// bool转整数(对结果强制类型转换就成了int)
+func Btoi(b bool) uint8 {
+    if b {
+        return 1
+    }
+    return 0
+}

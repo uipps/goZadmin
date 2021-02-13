@@ -62,14 +62,19 @@ D说：“C在冤枉好人”。
 
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "github.com/uipps/goZadmin/suanfa/common"
+)
 
 func main() {
-    //whoIsThief()
-    whoIsThief02()
+    //whoIsThief01()
+    whoIsThief01_2()
+    //whoIsThief02()
+    //whoIsThief02_2()
 }
 
-func whoIsThief() {
+func whoIsThief01() {
     lThief := "" // 小偷可能是多个，没有明确说只有一个小偷，虽然“一宗盗窃案”，暂且当多个小偷，看看有哪些情况
 
     for a := 0; a <= 1; a++ {
@@ -144,6 +149,35 @@ func whoIsThief02() {
                     }
                 }
             }
+        }
+    }
+}
+
+// 小偷只有一个的情况，可以逐个假定哪位是小偷进行一重循环，无需多重循环
+func whoIsThief02_2() {
+    // 对ABCD进行循环
+    for i := 'A'; i <= 'D'; i++ {
+        A := common.Btoi(i != 'A'); // A说：“我不是小偷”
+        B := common.Btoi(i == 'C'); // B说：“C是小偷”；
+        C := common.Btoi(i == 'D'); // C说：“小偷肯定是D”；
+        D := common.Btoi(i != 'D'); // D说：“C在冤枉好人”。
+        if (A+B+C+D == 3) {         // 四人中有三人说的是真话
+            fmt.Printf("小偷是：%c \n", i); // 打印谁是小偷
+        }
+    }
+}
+
+// 假设问题1中小偷只有一个，可以逐个假定哪位是小偷进行一重循环，无需多重循环
+func whoIsThief01_2() {
+    // 对ABCDE进行循环
+    for i := 'A'; i <= 'E'; i++ {
+        A := common.Btoi(i == 'D'); // A说：“D是小偷”
+        B := common.Btoi(i != 'B'); // B说：“我是无辜的”；
+        C := common.Btoi(i != 'E'); // C说：“E不是小偷”；
+        D := common.Btoi(i != 'D'); // D说：“A说的全是谎话”。
+        E := common.Btoi(i != 'B'); // E说：“B说的全是真话”。
+        if (A+B+C+D+E == 3) {       // 五人中有三人说的是真话
+            fmt.Printf("小偷是：%c \n", i); // 打印
         }
     }
 }
