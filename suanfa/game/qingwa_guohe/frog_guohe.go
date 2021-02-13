@@ -229,6 +229,7 @@ func move_frog2(left_num int, right_num int) {
         for i := 0; fg_flag && i < left_num+right_num-1; i++ { //循环检查现有排列
             if (frog[i] == -1 && frog[i+1] == 1 && frog[i+2] == 0) { //若向右的青蛙可以向右跳过
                 frog[i], frog[i+2] = frog[i+2], frog[i] //向右跳动
+                fmt.Printf("向右跳动：2格, ");
                 print_road2(frog)                       //输出移动一次各青蛙的位置
                 fg_flag = false
             }
@@ -238,6 +239,7 @@ func move_frog2(left_num int, right_num int) {
         for i := 0; fg_flag && i < left_num+right_num-1; i++ {
             if (frog[i] == 0 && frog[i+1] == -1 && frog[i+2] == 1) { //若向左的青蛙可以向左跳
                 frog[i], frog[i+2] = frog[i+2], frog[i] //向左跳动
+                fmt.Printf("向左跳动：2格, ");
                 print_road2(frog)                       //输出移动一次各青蛙的位置
                 fg_flag = false
             }
@@ -248,6 +250,7 @@ func move_frog2(left_num int, right_num int) {
             if (frog[i] == -1 && frog[i+1] == 0 && (i == 0 || i == left_num+right_num-1 || frog[i-1] != frog[i+2])) {
                 //若向右移动青蛙不会产生阻塞
                 frog[i], frog[i+1] = frog[i+1], frog[i] //向右跳动
+                fmt.Printf("向右平移：1格, ");
                 print_road2(frog)                       //输出移动一次各青蛙的位置
                 fg_flag = false
             }
@@ -258,6 +261,7 @@ func move_frog2(left_num int, right_num int) {
             if (frog[i] == 0 && frog[i+1] == 1 && (i == 0 || i == left_num+right_num-1 || frog[i-1] != frog[i+2])) {
                 //若向左移动青蛙不会产生阻塞
                 frog[i], frog[i+1] = frog[i+1], frog[i] //向左跳动
+                fmt.Printf("向左平移：1格, ");
                 print_road2(frog)                       //输出移动一次各青蛙的位置
                 fg_flag = false
             }
