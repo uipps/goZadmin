@@ -58,7 +58,7 @@ func main() {
     fmt.Printf("圆盘的个数为：%d\n\n", hanoiNum)
     hanoiCount = 0
     TowersOfHanoi1(hanoiNum, a, b, c)
-    fmt.Printf("\n>>移动了 %d 次，把A上的圆盘都移动到了C上\n", hanoiCount)
+    fmt.Printf("\n>>移动了 %d 次，把%s上的圆盘通过%s辅助塔, 都移动到了%s上\n", hanoiCount, hanoiTowBegin, hanoiTowFuzhu, hanoiTowTarget)
 
     return
 }

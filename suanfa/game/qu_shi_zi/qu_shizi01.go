@@ -13,8 +13,8 @@
 */
 
 //     go run qu_shizi01.go -n 21
-//     go run /Users/cf/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/game/qu_shi_zi/qu_shizi01.go -n 21
-//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\qu_shi_zi\qu_shizi01.go -n 22
+//     go run /Users/cf/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/game/qu_shi_zi/qu_shizi01.go
+//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\qu_shi_zi\qu_shizi01.go
 
 package main
 
