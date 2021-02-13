@@ -106,7 +106,7 @@ func move_frog(left_num int, right_num int) {
 
         // 空白的左边向右边跳动(blank--左移1位): 跳过去后，相连两个不能相等 [blank-2] != [blank+1]
         for i := 0; i < nEmptyGrid && bMove; i++ {
-            if (nEmptyGrid>=1 && arrRoad[nEmptyGrid-1] < 0) && (nEmptyGrid < nLen-2 && (nEmptyGrid >= 2 && (arrRoad[nEmptyGrid-2]) != arrRoad[nEmptyGrid+1])) {
+            if (nEmptyGrid >= 1 && arrRoad[nEmptyGrid-1] < 0) && (nEmptyGrid < nLen-2 && (nEmptyGrid >= 2 && (arrRoad[nEmptyGrid-2]) != arrRoad[nEmptyGrid+1])) {
                 //swap(&arrRoad[nEmptyGrid - 1], &arrRoad[nEmptyGrid]);
                 arrRoad[nEmptyGrid-1], arrRoad[nEmptyGrid] = arrRoad[nEmptyGrid], arrRoad[nEmptyGrid-1]
                 if nEmptyGrid == nLen-1 {
@@ -122,7 +122,7 @@ func move_frog(left_num int, right_num int) {
 
         // 空白的右边向左边跳动(blank++右移1位):
         for i := nLen - 1; i > nEmptyGrid && bMove; i-- {
-            if (arrRoad[nEmptyGrid+1] > 0) && (nEmptyGrid > 0 && (nEmptyGrid>=1 && arrRoad[nEmptyGrid+2] != arrRoad[nEmptyGrid-1]) ) {
+            if (arrRoad[nEmptyGrid+1] > 0) && (nEmptyGrid > 0 && (nEmptyGrid >= 1 && arrRoad[nEmptyGrid+2] != arrRoad[nEmptyGrid-1])) {
                 //swap(&arrRoad[nEmptyGrid + 1], &arrRoad[nEmptyGrid]);
                 arrRoad[nEmptyGrid+1], arrRoad[nEmptyGrid] = arrRoad[nEmptyGrid], arrRoad[nEmptyGrid+1]
                 if nEmptyGrid == 0 {
@@ -143,9 +143,9 @@ func print_road(arrRoad []int) {
     nLen := len(arrRoad)
     for i := 0; i < nLen; i++ {
         if arrRoad[i] < 0 {
-            fmt.Printf("-> ")
+            fmt.Printf("-1 ") // ->
         } else if arrRoad[i] > 0 {
-            fmt.Printf("<- ")
+            fmt.Printf("+1 ") // <-
         } else {
             fmt.Printf("__ ")
             //fmt.Printf("O ")
@@ -163,7 +163,7 @@ func print_road2(frog []int) {
     } else { //输出步数
         fmt.Printf("第%2d步：", number)
     }
-    //print_road(frog);return     // 另外一种方式输出
+    print_road(frog);return // 另外一种方式输出
 
     nLen := len(frog)
     //nLen := argNumLeft + argNumRight +1
@@ -199,7 +199,7 @@ func initFrogArrByNum(left_num int, right_num int) []int {
 
 func move_frog2(left_num int, right_num int) {
     //frog := []int{-1, -1, -1, 0, 1, 1, 1}         // 表示青蛙的数组
-    frog := initFrogArrByNum(left_num, right_num)     // 获取初始化数组
+    frog := initFrogArrByNum(left_num, right_num) // 获取初始化数组
     fg_flag := true
 
     fmt.Printf("初始数组：")
@@ -225,6 +225,7 @@ func move_frog2(left_num int, right_num int) {
         // 下面是循环处理
         fg_flag = true //fg_flag为青蛙移动一步的标记
 
+        //向右跳动：间隔1个跳过，2格
         for i := 0; fg_flag && i < left_num+right_num-1; i++ { //循环检查现有排列
             if (frog[i] == -1 && frog[i+1] == 1 && frog[i+2] == 0) { //若向右的青蛙可以向右跳过
                 frog[i], frog[i+2] = frog[i+2], frog[i] //向右跳动
@@ -233,6 +234,7 @@ func move_frog2(left_num int, right_num int) {
             }
         }
 
+        //向左跳动：间隔1个跳过，2格
         for i := 0; fg_flag && i < left_num+right_num-1; i++ {
             if (frog[i] == 0 && frog[i+1] == -1 && frog[i+2] == 1) { //若向左的青蛙可以向左跳
                 frog[i], frog[i+2] = frog[i+2], frog[i] //向左跳动
@@ -241,6 +243,7 @@ func move_frog2(left_num int, right_num int) {
             }
         }
 
+        //向右平移：1格
         for i := 0; fg_flag && i < left_num+right_num; i++ { //循环检查现有排列
             if (frog[i] == -1 && frog[i+1] == 0 && (i == 0 || i == left_num+right_num-1 || frog[i-1] != frog[i+2])) {
                 //若向右移动青蛙不会产生阻塞
@@ -250,6 +253,7 @@ func move_frog2(left_num int, right_num int) {
             }
         }
 
+        //向左平移：1格
         for i := 0; fg_flag && i < left_num+right_num; i++ {
             if (frog[i] == 0 && frog[i+1] == 1 && (i == 0 || i == left_num+right_num-1 || frog[i-1] != frog[i+2])) {
                 //若向左移动青蛙不会产生阻塞
