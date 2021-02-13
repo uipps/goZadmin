@@ -1,4 +1,7 @@
 /**
+
+一、 推理题1：
+https://www.zybang.com/question/dbd62d25cfcec11e707886ca31be7a09.html
 雷米警长正在盘问一宗盗窃案的5个嫌疑人，他们当中只有3个人说的是真话，根据他们的说辞，你能猜出谁是小偷吗？
 A：D是小偷
 B：我是无辜的
@@ -30,6 +33,31 @@ go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\who_is_l
   C: 0,
   D: 0,
   E: 1; 小偷是DE
+
+
+二、 推理题2：
+https://blog.csdn.net/qq_29720657/article/details/78435177
+
+警察抓住了A、B、C、D四名盗窃嫌疑犯，其中只有一人是小偷。在审问时，
+A说：“我不是小偷”；
+B说：“C是小偷”；
+C说：“小偷肯定是D”；
+D说：“C在冤枉好人”。
+现在已经知道这四人中有三人说的是真话，一人说的是假话。请问到底谁是小偷？
+
+-- 输出结果
+真假话情况(1真话，0假话)：
+  A: 1,
+  B: 1,
+  C: 0,
+  D: 1; 小偷是C
+真假话情况(1真话，0假话)：
+  A: 1,
+  B: 1,
+  C: 1,
+  D: 0; 小偷是CD
+因为小偷只有一个，因此采纳“小偷是C”
+
 */
 
 package main
@@ -37,12 +65,12 @@ package main
 import "fmt"
 
 func main() {
-    whoIsThief()
+    //whoIsThief()
+    whoIsThief02()
 }
 
 func whoIsThief() {
     lThief := "" // 小偷可能是多个，没有明确说只有一个小偷，虽然“一宗盗窃案”，暂且当多个小偷，看看有哪些情况
-
 
     for a := 0; a <= 1; a++ {
         for b := 0; b <= 1; b++ {
@@ -51,12 +79,12 @@ func whoIsThief() {
                     for e := 0; e <= 1; e++ {
                         // 他们当中只有3个人说的是真话
                         if (a+b+c+d+e == 3) {
-                            lThief = ""         // 清除上一轮
+                            lThief = "" // 清除上一轮
                             // E：B说的全是真话；B：我是无辜的；E和B都为1，或者E和B都是0
-                            if (e + b ==2) {
+                            if (e+b == 2) {
                                 // e,b都是1
                                 //lThief = ""
-                            } else if (e + b == 0 ) {
+                            } else if (e+b == 0) {
                                 lThief += "B"
                             } else {
                                 // e + b ==1不成立
@@ -77,6 +105,42 @@ func whoIsThief() {
                             }
                             fmt.Printf("真假话情况(1真话，0假话)：\n  A: %d, \n  B: %d, \n  C: %d, \n  D: %d, \n  E: %d; 小偷是%s \n", a, b, c, d, e, lThief)
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+func whoIsThief02() {
+    lThief := "" // 小偷可能是多个，没有明确说只有一个小偷，虽然“一宗盗窃案”，暂且当多个小偷，看看有哪些情况
+
+    for a := 0; a <= 1; a++ {
+        for b := 0; b <= 1; b++ {
+            for c := 0; c <= 1; c++ {
+                for d := 0; d <= 1; d++ {
+                    // 他们当中只有3个人说的是真话
+                    if (a+b+c+d == 3) {
+                        lThief = "" // 清除上一轮
+
+                        //c和d互咬只能有一个人对，c+d==1
+                        if (c+d != 1) {
+                            continue
+                        }
+
+                        if (a == 0) {
+                            lThief += "A"
+                        }
+
+                        if (b == 1) {
+                            lThief += "C"
+                        }
+
+                        if (c == 1) {
+                            lThief += "D"
+                        }
+
+                        fmt.Printf("真假话情况(1真话，0假话)：\n  A: %d, \n  B: %d, \n  C: %d, \n  D: %d; 小偷是%s \n", a, b, c, d, lThief)
                     }
                 }
             }
