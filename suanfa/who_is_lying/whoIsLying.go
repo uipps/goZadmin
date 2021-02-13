@@ -33,6 +33,11 @@ go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\who_is_l
 　　思路解析：该问题看起来复杂，但若把它变为数学问题，则清晰多了．
 
 
+-- 程序运行结果
+张三说谎
+李四没说谎
+王五说谎
+
 */
 
 package main

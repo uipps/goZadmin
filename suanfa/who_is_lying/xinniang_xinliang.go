@@ -5,9 +5,16 @@
 
 参考： https://blog.csdn.net/csy981848153/article/details/7626779
 
+--
+解：
+  ABC分别用123表示三个新郎，并且ABC的值不能相同
+  XYZ分别表示新娘，XYZ的取值范围就是123，分别对应新郎的值即为匹配
+
+
+-- 程序运行
 go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\who_is_lying\xinniang_xinliang.go
 
---
+-- 程序运行结果
 新娘X和新郎B是一对情侣！
 新娘Y和新郎C是一对情侣！
 新娘Z和新郎A是一对情侣！
