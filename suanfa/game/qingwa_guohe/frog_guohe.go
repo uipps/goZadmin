@@ -46,6 +46,13 @@ func main() {
     move_frog2(argNumLeft, argNumRight)
     //move_frog(argNumLeft, argNumRight) // 此方法来自网上，有问题，不可用
 
+    number = 0
+    path_arr := [][]int{}                             // TODO 记录操作步骤
+    frog := initFrogArrByNum(argNumLeft, argNumRight) // 获取初始化数组
+    fmt.Printf("初         始        数        组：")
+    fmt.Println(frog)
+    GetFrogJumpPath(frog, &path_arr)
+
     return
 }
 
@@ -159,7 +166,7 @@ func print_road(arrRoad []int) {
 func print_road2(frog []int) {
     number++
     if (0 == number) {
-        fmt.Printf("初  始：")
+        fmt.Printf("初    始    状     态：")
     } else { //输出步数
         fmt.Printf("第%2d步：", number)
     }
@@ -206,7 +213,9 @@ func move_frog2(left_num int, right_num int) {
     fmt.Println(frog, "\n")
     print_road2(frog) // 输出初始状态
 
+    //counter := 0
     for {
+        //counter++
         // 退出条件, 右侧1全部到左边，左边-1全部到右侧
         left_total := 0
         right_total := 0
@@ -221,8 +230,8 @@ func move_frog2(left_num int, right_num int) {
             break
         }
         //
-
-        // 下面是循环处理
+        //fmt.Printf("\n ====== 第%3d次大循环： ======\n", counter) // 向左移动的青蛙
+        // 下面是循环处理，TODO 调整顺序（3放到1后）导致程序死循环
         fg_flag = true //fg_flag为青蛙移动一步的标记
 
         //向右跳动：间隔1个跳过，2格
@@ -269,5 +278,78 @@ func move_frog2(left_num int, right_num int) {
     }
     fmt.Printf("\n结果数组：")
     fmt.Println(frog)
+    fmt.Println("\n")
     return
+}
+
+//求解青蛙过河的路径, 递归方式; path_arr是二维数组，存放走一步frog数组的快照
+func GetFrogJumpPath(frog []int, path_arr *[][]int) {
+    left_num := argNumLeft
+    right_num := argNumRight
+    size := left_num + right_num + 1
+
+    // 递归结束条件, 右侧1全部到左边，左边-1全部到右侧
+    left_total := 0
+    right_total := 0
+    for i := 0; i < right_num; i++ {
+        left_total += frog[i]
+    }
+    for i := left_num + right_num; i > right_num; i-- { // 空白右侧累加和
+        right_total += frog[i]
+    }
+    if (left_total == 1*right_num && right_total == -1*left_num) {
+        // 左侧=3；右侧=-3说明已经全部交换了（初始左边是-3，右边是3）
+        return
+    }
+
+    flag_fg := 0 // 本轮所走策略：向左还是向右移动一格还是2格
+    for i := 0; i < size; i++ {
+        number++
+        if (i < size-2 && frog[i] == -1 && frog[i+1] == 0) { //右向的青蛙平移到邻近的空石头上：1格
+            frog[i], frog[i+1] = frog[i+1], frog[i]
+            flag_fg = 1;
+        } else if (i < size-2 && frog[i] == -1 && frog[i+1] == 1 && frog[i+2] == 0) { //右向的青蛙越过一只左向的青蛙跳到空石头上
+            frog[i], frog[i+2] = frog[i+2], frog[i]
+            flag_fg = 2;
+        } else if (i > 0 && frog[i-1] == 0 && frog[i] == 1) { //左向的青蛙跳到邻近的空石头上
+            frog[i], frog[i-1] = frog[i-1], frog[i]
+            flag_fg = 3;
+        } else if (i > 1 && frog[i] == 1 && frog[i-1] == -1 && frog[i-2] == 0) { //左向的青蛙越过一只右向的青蛙跳到空石头上
+            frog[i], frog[i-2] = frog[i-2], frog[i]
+            flag_fg = 4;
+        }
+
+        if (flag_fg > 0) {
+            fmt.Printf("flag_fg: %d, 第 %2d步（移位操作后）：", flag_fg, number)
+            fmt.Println(frog)
+            //path_arr.push_back(frog);
+            GetFrogJumpPath(frog, path_arr);
+
+            // 复原青蛙的位置
+            if (flag_fg == 1) {
+                frog[i], frog[i+1] = frog[i+1], frog[i]
+                //frog[i] = -1;
+                //frog[i+1] = 0;
+            } else if (flag_fg == 2) {
+                frog[i], frog[i+2] = frog[i+2], frog[i]
+                //frog[i] = -1;
+                //frog[i+2] = 0;
+            } else if (flag_fg == 3) {
+                frog[i], frog[i-1] = frog[i-1], frog[i]
+                //frog[i] = 1;
+                //frog[i-1] = 0;
+            } else if (flag_fg == 4) {
+                frog[i], frog[i-2] = frog[i-2], frog[i]
+                //frog[i] = 1;
+                //frog[i-2] = 0;
+            }
+            flag_fg = 0;
+            fmt.Printf("flag_fg: %d, 第 %2d步（复原操作后）：", flag_fg, number)
+            fmt.Println(frog)
+            //path_arr.pop_back();
+        } else {
+            fmt.Printf("flag_fg: %d, 第 %2d步（未进行操作）：", flag_fg, number)
+            fmt.Println(frog)
+        }
+    }
 }
