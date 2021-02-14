@@ -1,8 +1,6 @@
 // 大整数的加减乘除
-// 约瑟夫环：
-//  41个人围成一个圆圈，由第一个人开始报数，报到3的人就必须自杀，再由下一个人开始报数，直到所有人都自杀为止。
-//      约瑟夫和他的朋友安排在16和31的位置，最后就剩下他们两人，不符合游戏规则，所以逃过了该死亡游戏
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\big_int_math.go -m 3 -n 41
+//  TODO 乘除已经实现，加减还未实现
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -m 3 -n 41
 
 package main
 
@@ -65,7 +63,7 @@ func BigIntTrim(num1 bigint) {
     //
 }
 
-func BigIntTrans(num1 bigint) {
-    str1 = ""
+func BigIntTrans(num1 bigint) string {
+    str1 := ""
     return str1
 }
