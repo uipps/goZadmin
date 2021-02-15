@@ -6,8 +6,8 @@
 
 go run tian_fuhao05.go -n "5 5 5 5 5" -r 5
 go run tian_fuhao05.go -n 5 -r 5
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao05.go -n "5 5 5 5 5" -r 5
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao05.go -n 5 -r 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao05.go -n "5 5 5 5 5" -r 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao05.go -n 5 -r 5
 
 
 二、 在五个8之间填上合适的运算符号,使计算结果 等于1至8（8和8要连加减乘除)  TODO 暂未支持括号

@@ -13,7 +13,7 @@ go run caipiao.go -e shuangseqiu -a 32 -c 16
 
 
 go run caipiao.go -l 7 -a 35 -c 12
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\caipiao.go -l 3 -a 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\caipiao\caipiao.go -l 3 -a 5
 
 */
 

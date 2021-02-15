@@ -1,6 +1,6 @@
 // 分解质因数
-//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\zhishu\fenjie_zhiyinshu.go -n 407
-//     go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/zhishu/fenjie_zhiyinshu.go -n 407
+//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\zhishu\fenjie_zhiyinshu.go -n 407
+//     go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/math/zhishu/fenjie_zhiyinshu.go -n 407
 
 package main
 

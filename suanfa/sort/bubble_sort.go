@@ -1,6 +1,6 @@
 // 冒泡排序
 // go run bubble_sort.go -a "4 93 84 85 80 37 81 93 27 12 1"
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\sort\bubble_sort.go -a "69 65 90 37 92 6 1"
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\sort\bubble_sort.go -a "69 65 90 37 92 6 1"
 
 package main
 

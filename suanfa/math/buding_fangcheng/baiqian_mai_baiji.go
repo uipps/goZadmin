@@ -1,7 +1,7 @@
 /*
 10.不定方程问题(百钱买白鸡)
 
-公鸡5文钱1只，白鸡3文钱1只，小鸡3只1文钱，要求用100文钱买100只鸡，求公鸡，母鸡和小鸡各应该买多少只？
+公鸡5文钱1只，母鸡3文钱1只，小鸡3只1文钱，要求用100文钱买100只鸡，求公鸡，母鸡和小鸡各应该买多少只？
 x+y+z=100;
 5x+3y+z/3=100
 
@@ -9,8 +9,8 @@ x+y+z=100;
 
 
 // go run buding_fangcheng.go
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\buding_fangcheng\baiqian_mai_baiji.go
-// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/buding_fangcheng/baiqian_mai_baiji.go
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\buding_fangcheng\baiqian_mai_baiji.go
+// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/math/buding_fangcheng/baiqian_mai_baiji.go
 
 
 -- 几种可能结果

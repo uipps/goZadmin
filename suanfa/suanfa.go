@@ -1,5 +1,5 @@
 // 找零钱、等等算法
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\suanfa.go
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\suanfa.go
 package main
 
 import (

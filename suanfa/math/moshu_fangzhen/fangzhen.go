@@ -1,7 +1,7 @@
 // 魔术方阵：方阵中的每行、每列或对角线位置的数各自相加的和均相等
 //    采用最笨的方法，但是时间复杂度太大 O(n!)
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen.go -n 3 -b 1
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen.go
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen.go -n 3 -b 1
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen.go
 /**
 
 请输入矩阵行数(奇数):3

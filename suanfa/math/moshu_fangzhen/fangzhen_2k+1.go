@@ -5,8 +5,8 @@
 //  (3) 如果行列范围超出矩阵范围，则回绕。例如1在第1行，则2应放在最下一行，列数同样加1;
 //  (4) 如果按上面规则确定的位置上已有数，或上一个数是第1行第n列时，则把下一个数放在上一个数的下面。
 
-// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_2k+1.go" -b 1 -n 3
-// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_2k+1.go" -n 5
+// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen_2k+1.go" -b 1 -n 3
+// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen_2k+1.go" -n 5
 /**
 
 请输入矩阵行数(奇数2k+1):3

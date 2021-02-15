@@ -11,6 +11,7 @@
     后序遍历的顺序是 左子树 -----> 右子树 -----> 根
 
 
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tree\btree01.go
 
 */
 

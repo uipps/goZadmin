@@ -11,8 +11,8 @@
 //         π = 8/(1*3) + 8/(5*7) + 8/(9*11) + 8/(13*15) ...... 就按照这个计算好了
 //
 // go run pi02.go -n 1111
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\pai\pi02.go -n 1111
-// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/pai/pi02.go -n 1111 -c 1000000
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\pai\pi02.go -n 1111
+// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/math/pai/pi02.go -n 1111 -c 1000000
 
 package main
 

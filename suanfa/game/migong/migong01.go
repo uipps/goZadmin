@@ -1,6 +1,10 @@
 // 走迷宫
 /**
- go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\migong\migong01.go
+cd /D F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\migong
+ go run migong01.go
+
+-- 报错1.txt找不到
+ go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\migong\migong01.go
 
 1.txt的内容：
 6 5
@@ -22,6 +26,7 @@ import (
 )
 
 func main() {
+    //currentPath, _ := common.GetCurrentPath();fmt.Println(currentPath); // C:/Users/cf/AppData/Local/Temp/go-build308556738/b001/exe/migong01.exe
     arr := read("1.txt")
     fmt.Println("\n the arr:")
     fmt.Println(arr)

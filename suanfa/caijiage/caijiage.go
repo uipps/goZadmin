@@ -1,6 +1,6 @@
 //
 // go run caijiage.go
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\caijiage\caijiage.go
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\caijiage\caijiage.go
 
 //    由计算机随机生成一个 1~100的整数，由用户来猜这个数。
 

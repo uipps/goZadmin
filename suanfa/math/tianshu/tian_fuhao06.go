@@ -6,8 +6,8 @@
 
 go run tian_fuhao06.go -n "2 2 2 2 2 2" -r 2
 go run tian_fuhao06.go -n 2 -r 2
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao06.go -n "2 2 2 2 2 2" -r 2
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao06.go -n 2 -r 2
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao06.go -n "2 2 2 2 2 2" -r 2
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao06.go -n 2 -r 2
 
 */
 

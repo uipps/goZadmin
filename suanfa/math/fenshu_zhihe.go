@@ -24,7 +24,7 @@
 用程序计算一下：
 
 go run math/fenshu_zhihe.go
-
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\fenshu_zhihe.go
 
 -- 所需范围4,6,12,1000
 p: 2 q: 3 r: 7 s: 42

@@ -6,8 +6,8 @@
 
 // 参考： https://www.cnblogs.com/heisaijuzhen/articles/4324474.html
 
-// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_4k.go" -b 1 -n 8
-// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_4k.go" -n 4
+// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen_4k.go" -b 1 -n 8
+// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen_4k.go" -n 4
 /**
 
 请输入矩阵行数(4k): 4

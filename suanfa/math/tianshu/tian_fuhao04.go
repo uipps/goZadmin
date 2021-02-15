@@ -7,8 +7,8 @@
 
 go run tian_fuhao04.go -n "3 3 3 3" -r 5
 go run tian_fuhao04.go -n 3 -r 5
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao04.go -n "3 3 3 3" -r 5
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao04.go -n 3 -r 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao04.go -n "3 3 3 3" -r 5
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao04.go -n 3 -r 5
 
 */
 

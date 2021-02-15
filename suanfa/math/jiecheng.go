@@ -1,6 +1,6 @@
 // 阶乘 5*4*3*2*1
 //     go run jiecheng.go -n 5
-//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\math\jiecheng.go -n 5
+//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\jiecheng.go -n 5
 package main
 
 import (

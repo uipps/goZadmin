@@ -2,7 +2,7 @@
 // 假设银行一年整存零取的年利息为1.71% , 请问编程计算父亲至少需要一次性存款多少
 //  4年就是48个月，倒推的方式进行计算
 // go run cunqian01.go -f 1000 -r 0.0171 -m 48
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\cunqian01.go -f 1000 -r 0.0171 -m 2
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\bank\cunqian01.go -f 1000 -r 0.0171 -m 2
 package main
 
 import (

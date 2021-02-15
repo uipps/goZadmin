@@ -5,8 +5,8 @@
 //  (3) 将井字分隔线的行及第k+2行两侧的数字左右对调，两行中央的数字上下对调，左边列的数字除交叉点外进行垂直翻转。
 //  (4) 将井字分隔线列的纵向中央的数字除第2k+1列外左右对调，井字横行左方的第一个数字上下对调，上横线中央的数字水平翻转。
 
-// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_4k+2.go" -b 2 -n 6
-// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\moshu_fangzhen\fangzhen_4k+2.go" -n 6
+// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen_4k+2.go" -b 2 -n 6
+// go run "F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\moshu_fangzhen\fangzhen_4k+2.go" -n 6
 /**
 请输入矩阵行数(4k+2):6
  1   32   33   34    5    6

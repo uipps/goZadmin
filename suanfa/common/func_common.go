@@ -1,9 +1,13 @@
 package common
 
 import (
+    "errors"
     "fmt"
+    "os"
     "os/exec"
+    "path/filepath"
     "regexp"
+    "runtime"
     "strconv"
     "strings"
 )
@@ -172,4 +176,35 @@ func Btoi(b bool) uint8 {
         return 1
     }
     return 0
+}
+
+// 获取当前路径
+func GetCurrentPath() (string, error) {
+    // dir, err := filepath.Abs(filepath.Dir(os.Args[0])) // 获取的是exe文件的目录，C:\Users\cf\AppData\Local\Temp\go-build008249894\b001\exe
+    // dir := filepath.Dir(os.Args[0]);fmt.Println(dir)
+    //if err != nil {
+    //    log.Fatal(err)
+    //}
+    //fmt.Println(dir)
+    //return dir, err
+
+    file, err := exec.LookPath(os.Args[0])  // 获取的是exe文件绝对地址 C:\Users\cf\AppData\Local\Temp\go-build114766206\b001\exe\migong01.exe
+    if err != nil {
+       return "", err
+    }
+    path, err := filepath.Abs(file)
+    if err != nil {
+        return "", err
+    }
+    //fmt.Println("path111:", path)
+    if runtime.GOOS == "windows" {
+        path = strings.Replace(path, "\\", "/", -1)
+    }
+    //fmt.Println("path222:", path)
+    i := strings.LastIndex(path, "/")
+    if i < 0 {
+        return "", errors.New(`Can't find "/" or "\".`)
+    }
+    //fmt.Println("path333:", path)
+    return string(path[0 : i+1]), nil
 }

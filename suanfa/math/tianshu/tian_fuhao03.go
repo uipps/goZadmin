@@ -24,8 +24,8 @@
 
 go run tian_fuhao03.go -n "8 8 8" -r 6
 go run tian_fuhao03.go -n 8 -r 6
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao03.go -n "8 8 8" -r 6
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\tianshu\tian_fuhao03.go -n 8 -r 6
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao03.go -n "8 8 8" -r 6
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tian_fuhao03.go -n 8 -r 6
 
 */
 

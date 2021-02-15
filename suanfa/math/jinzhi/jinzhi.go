@@ -1,14 +1,14 @@
 // 任意进制之间的转换： argB2 只能是2~76，argB2==1则一直循环，
 
 // go run jinzhi.go -b 8 -n 10
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\jinzhi.go -b 2 -n 16
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\jinzhi\jinzhi.go -b 2 -n 16
 
 package main
 
 import (
     "flag"
     "fmt"
-    "github.com/uipps/goZadmin/tools/jinzhiToAny"
+    "github.com/uipps/goZadmin/suanfa/common/jinzhiToAny"
 )
 
 var (

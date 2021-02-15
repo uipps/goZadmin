@@ -1,4 +1,5 @@
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\shaizi\shaizi01.go
+// 色子（骰子）游戏，
+//  go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\shaizi\shaizi01.go
 package main
 
 import (

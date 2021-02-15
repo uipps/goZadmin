@@ -1,6 +1,6 @@
 // 斐波那契数列(Fibonacci): 0 1 1 2 3 5 8 13 21
 //     go run fibnacci.go -n 20
-//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\tools\suanfa\fibnacci.go -n 20
+//     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\feibonaqi_jishu\fibnacci.go -n 20
 package main
 
 import (
