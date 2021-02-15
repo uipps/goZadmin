@@ -12,7 +12,7 @@
 
 
 -- 程序运行
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\who_is_lying\xinniang_xinliang.go
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\who_is_lying\xinniang_xinliang.go
 
 -- 程序运行结果
 新娘X和新郎B是一对情侣！

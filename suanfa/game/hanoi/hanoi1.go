@@ -1,7 +1,7 @@
 // 汉诺塔：
 //  把A塔上编号从小号到大号的圆盘从A塔通过B辅助塔移动到C塔上去，要求大盘不能在小盘上面
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\hanoi\hanoi1.go -n 3
-// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/hanoi/hanoi1.go -n 3 -a A -b B -c C
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\hanoi\hanoi1.go -n 3
+// go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/game/hanoi/hanoi1.go -n 3 -a A -b B -c C
 //
 // 不难发现规律：1个圆盘的次数 2的1次方减1
 //

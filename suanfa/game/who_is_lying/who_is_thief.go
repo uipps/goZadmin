@@ -18,7 +18,7 @@ E：B说的全是真话
 
 
 -- 程序运行
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\who_is_lying\who_is_thief.go
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\who_is_lying\who_is_thief.go
 
 -- 运行结果
 真假话情况(1真话，0假话)：

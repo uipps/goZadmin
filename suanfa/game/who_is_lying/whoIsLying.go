@@ -6,7 +6,7 @@
 参考： https://blog.csdn.net/csy981848153/article/details/7626784
 
 
-go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\who_is_lying\whoIsLying.go
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\who_is_lying\whoIsLying.go
 
 解：设张三为A，李四为B，王五为C，说真话为1，说假话为0．
 

@@ -1,5 +1,5 @@
 /**
- go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\monkey_eat_peach\monkey_eat_peach.go -n 10
+ go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\monkey_eat_peach\monkey_eat_peach.go -n 10
 
 8.2.1　猴子吃桃
 
