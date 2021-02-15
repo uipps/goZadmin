@@ -6,6 +6,7 @@
 
 // 2个非常大的数字，310位，超出了float64范围
 // go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\chengfa.go -n 8888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555558888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555559999999999 -m 8888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555558888888888999999999977777777776666666666555555555588888888889999999999777777777766666666665555555555888888888899999999997777777777666666666655555555559999999999
+// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\chengfa.go -n 99999999999999999999 -m 99999999999999999999
 
 package main
 
@@ -56,23 +57,36 @@ func main() {
     fmt.Printf("startTime：%d, %s\n", startTime/1e3, time.Unix(0, startTime).Format("2006-01-02 15:04:05"))
 
     fmt.Printf("\n  计算 %s x %s 的值，第一种方法(任意位，负数或小数均可)，结果为：\n", chengshu1, chengshu2)
-    rlt := chengFa01(chengshu1, chengshu2)
-    fmt.Println(rlt)
+    rlt_1 := chengFa01(chengshu1, chengshu2)
+    fmt.Println(rlt_1)
     fmt.Println("\n")
 
     // 如果数字太长，考虑格式化输出
     //common.OutPrintFmt(k_arr1, xiaoshuLeng, 1, fenzi_orig, fenmu)
     fmt.Printf("\n  计算 %s x %s 的值，第二种方法(不适用小数和负数)，结果为：\n", chengshu1, chengshu2)
-    rlt = chengFa02(chengshu1, chengshu2)
-    fmt.Println(rlt)
+    rlt_2 := chengFa02(chengshu1, chengshu2)
+    fmt.Println(rlt_2)
     fmt.Println("\n")
 
+    xiaoshu_1 := getXiaoShuChangDu(chengshu1)
+    xiaoshu_2 := getXiaoShuChangDu(chengshu2)
     fmt.Printf("\n  使用PHP的bcmul方法，结果为：\n")
-    command_str := fmt.Sprintf("echo bcmul('%s', '%s');", chengshu1, chengshu2)
-    rlt = common.ExecPHP(command_str)
+    command_str := fmt.Sprintf("echo bcmul('%s', '%s', %d);", chengshu1, chengshu2, xiaoshu_1+xiaoshu_2)
+    rlt := common.ExecPHP(command_str)
     //fmt.Printf("%T , '%s' , \n", rlt, rlt)
     fmt.Println(rlt)
     fmt.Println("\n")
+
+    if (rlt_1 != rlt) {
+        fmt.Printf("注： 方法一与bcmul的结果不一致.\n")
+    } else {
+        fmt.Printf("注： 方法一与bcmul的结果一致！ ^_^\n")
+    }
+    if (rlt_2 != rlt) {
+        fmt.Printf("注： 方法二与bcmul的结果不一致.\n")
+    } else {
+        fmt.Printf("注： 方法二与bcmul的结果一致！ ^_^\n")
+    }
 
     fmt.Printf("\n  计算 %s x %s 的值，直接转float64，计算结果为：\n", chengshu1, chengshu2)
     rlt_float64 := chengFa04(chengshu1, chengshu2)
@@ -96,7 +110,7 @@ func main() {
 }
 
 // 转化为float64位进行计算
-func chengFa04(chengshuA, chengshuB string) (result float64) {
+func chengFa04(chengshuA, chengshuB string) (float64) {
     chengA, _ := strconv.ParseFloat(chengshuA, 64)
     chengB, _ := strconv.ParseFloat(chengshuB, 64)
     return  chengA * chengB
@@ -123,20 +137,12 @@ func chengFa01(chengshuA, chengshuB string) (result string) {
     }
 
     // 2. 确定小数位数，顺便去掉小数点
-    xiaoshuLen1 := php2go.Strpos(chengshuA, ".", 0) // 返回-1表示不包含小数点
-    xiaoshuLen2 := php2go.Strpos(chengshuB, ".", 0)
-    if (-1 == xiaoshuLen1) {
-        xiaoshuLen1 = 0 // 不包含，则小数位的长度重置为0
-    } else {
-        // 含有小数点，记录小数位长度，然后删除小数点
-        xiaoshuLen1 = len(chengshuA) - xiaoshuLen1 - 1      // 字符串总长度减去(整数和小数点位数)，假如小数点后全为0也不影响
+    xiaoshuLen1 := getXiaoShuChangDu(chengshuA) // 返回0表示不包含小数点
+    xiaoshuLen2 := getXiaoShuChangDu(chengshuB)
+    if (xiaoshuLen1 > 0) {
         chengshuA = strings.Replace(chengshuA, ".", "", -1) // 去掉小数点
     }
-    if (-1 == xiaoshuLen2) {
-        xiaoshuLen2 = 0 // 不包含，则小数位的长度重置为0
-    } else {
-        // 含有小数点，记录小数位长度，然后删除小数点
-        xiaoshuLen2 = len(chengshuB) - xiaoshuLen2 - 1
+    if (xiaoshuLen2 > 0) {
         chengshuB = strings.Replace(chengshuB, ".", "", -1) // 去掉小数点
     }
 
@@ -155,28 +161,21 @@ func chengFa01(chengshuA, chengshuB string) (result string) {
             }
             ji := (chengshuB_r[j] - '0') * (chengshuA_r[i] - '0') // 可能进位了
             //fmt.Printf("%d, %c, %T | %d, %c, %T, chengji: %d\n", chengshuB_r[j], chengshuB_r[j], chengshuB_r[j], chengshuA_r[i], chengshuA_r[i], chengshuA_r[i], ji)
-
-            c[i+j] = c[i+j] + ji%10 // 这里是10进制
+            ji = (c[i+j] + ji)
+            c[i+j] = ji%10 // 这里是10进制
             c[i+j+1] = c[i+j+1] + ji/10
         }
     }
 
     // 5. 继续进位处理，对每项进行进位处理，plus保存上一次的进位数目, 顺便对结果加小数点
     xiaoshu_l := xiaoshuLen1 + xiaoshuLen2
-    var plus byte = 0
     for i := 0; i < len(c); i++ {
-        temp := c[i] + plus
-        plus = 0
-        if temp > 9 {
-            plus = temp / 10
-            result += string(temp - plus*10 + '0')
-        } else {
-            result += string(temp + '0')
-        }
+        result += string(c[i] + '0')
         if (xiaoshu_l > 0 && i == xiaoshu_l-1) {
             result += "." // 添加小数点
         }
     }
+
     // 6. 删除前导0，这里是先删除右侧0，因为还是反转状态
     result = php2go.Rtrim(result, "0")
     result = common.ReverseStr(result) // 将字符串反转
@@ -212,18 +211,6 @@ func chengFa02(a, b string) (reuslt string) {
     }
     //fmt.Println(c)
 
-    /* // uint16换成uint8则可能超出范围导致最终结果不准
-       d := make([]uint16, len(a)+len(b))
-       for i := 0; i < len(a); i++ {
-          for j := 0; j < len(b); j++ {
-              ji := uint16(a[i] - '0') *uint16(b[j] - '0')
-              d[i+j] += ji // 这里是10进制  这里做了一些修改
-              //d[i+j] += ji%10
-              //d[i+j+1] += ji/10   // 将进位累加
-          }
-       }
-       fmt.Println(d)*/
-
     var plus byte = 0
     for i := 0; i < len(c); i++ {
         temp := c[i] + plus
@@ -241,3 +228,15 @@ func chengFa02(a, b string) (reuslt string) {
 // 参考： https://www.cnblogs.com/PasserByOne/p/12019885.html
 // 运行结果错误，废弃
 //func chengFa03(str1, str2 string) (result string) {}
+
+// 获取小数位长度
+func getXiaoShuChangDu(numA string) int {
+    xiaoshuLen1 := php2go.Strpos(numA, ".", 0) // 返回-1表示不包含小数点
+    if (-1 == xiaoshuLen1) {
+        xiaoshuLen1 = 0 // 不包含，则小数位的长度重置为0
+    } else {
+        // 含有小数点，记录小数位长度
+        xiaoshuLen1 = len(numA) - xiaoshuLen1 - 1      // 字符串总长度减去(整数和小数点位数)，假如小数点后全为0也不影响
+    }
+    return xiaoshuLen1
+}
