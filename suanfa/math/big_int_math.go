@@ -1,7 +1,14 @@
+/*
 // 大整数的加减乘除
-//  TODO 乘除已经实现，加减还未实现
-// go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -m 3 -n 41
+//  TODO 大数加减还未实现小数部分
 
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -n 99988 -m 999
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -n 999 -m 99988 -o sub
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -n 99988 -m 999 -o sub
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -n 999888 -m 999 -o sub
+go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\big_int_math.go -n 1000888 -m 999 -o sub
+
+*/
 package main
 
 import (
@@ -79,7 +86,7 @@ func bcAdd(a string, b string) string {
     if (len_max != a_len) {
         a, b = b, a // 交换一下，保持a为长，b为短
     }
-    len_min := len(b)
+    b_len = len(b)
 
     // 2. 再将2个数字反转
     a_r := common.ReverseStr(a)
@@ -89,7 +96,7 @@ func bcAdd(a string, b string) string {
     c := make([]byte, len_max+1) // 存放计算结果，按照最长的，顶多进1位
     for i := 0; i < len_max; i++ {
         var rlt_c byte
-        if (i < len_min) {
+        if (i < b_len) {
             rlt_c = c[i] + (a_r[i] - '0') + (b_r[i] - '0')
         } else {
             rlt_c = c[i] + (a_r[i] - '0')
@@ -116,8 +123,83 @@ func bcAdd(a string, b string) string {
     return rlt
 }
 
-func bcSub(n string, m string) string {
+// TODO 暂不支持小数
+func bcSub(a string, b string) string {
+    // 1. 比较长度，确定结果的符号；数据重排，大数在前，小数在后
+    a_orig := a
+    a, b = sortTwoNum(a, b) // 将大的放前面，小的放后面
+
+    plus_minus := 1         // 结果符号，默认正号+
+    if (a != a_orig) {
+        plus_minus = -1
+    }
+
+    // 2. 再将2个数字反转
+    a_r := common.ReverseStr(a)
+    b_r := common.ReverseStr(b)
+    a_len := len(a)
+    b_len := len(b)
+
+    // 3. 逐个位数进行减法，顺便处理借位
+    c := make([]int8, a_len) // 存放计算结果，按照最长的
+    for i := 0; i < a_len; i++ {
+        if (i < b_len) {
+            if (int8(a_r[i] - '0') + c[i] < int8(b_r[i] - '0')) {
+                // 需要借位
+                c[i+1] = c[i+1] - 1
+                c[i] = int8(a_r[i] - '0') + c[i] + 10 - int8(b_r[i] - '0')
+            } else {
+                // 无需借位
+                c[i] = int8(a_r[i] - '0') + c[i] - int8(b_r[i] - '0')
+            }
+        } else {
+            if (int8(a_r[i] - '0') + c[i] < 0) {
+                // 需要借位
+                c[i+1] = c[i+1] - 1
+                c[i] = int8(a_r[i] - '0') + c[i] + 10
+            } else {
+                c[i] = int8(a_r[i] - '0') + c[i]
+            }
+        }
+    }
+
+    // 4. 对结果反转，拼装字符串，顺便删除前导0
     rlt := ""
+    for i := a_len - 1; i >= 0; i-- {
+       if (i == a_len - 1 && c[a_len - 1] == 0) {
+           continue
+       }
+       rlt += string(c[i] + '0')
+    }
+
+    if plus_minus < 0 {
+        rlt = "-" + rlt
+    }
 
     return rlt
+}
+
+// 两个正整数排序，哪个大，哪个在前面
+func sortTwoNum(a, b string) (string, string) {
+    a_len := len(a)
+    b_len := len(b)
+
+    if (a_len > b_len) {
+        return a, b
+    } else if (a_len == b_len) {
+        // 长度相等的情况，逐个比较大小
+        for i := 0; i < a_len; i++ {
+            // 从高位开始逐个比较
+            if (a[i] > b[i]) {
+                return a, b
+            } else if (a[i] < b[i]) {
+                return b, a
+            }
+        }
+        // 相等的情况
+        return a, b
+    } else {
+        // b长的情况
+        return b, a
+    }
 }
