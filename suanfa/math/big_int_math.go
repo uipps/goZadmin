@@ -19,12 +19,6 @@ import (
     "strings"
 )
 
-type bigint struct {
-    minus  string // 长整数数组
-    num    string // 符号，正还是负数
-    length int    // 保存该数的位数
-}
-
 var (
     bcN      string // 参与运算数据之一
     bcM      string // 参与运算数据之二
