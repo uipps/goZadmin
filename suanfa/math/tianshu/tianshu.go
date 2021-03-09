@@ -3,6 +3,7 @@
 go run tianshu.go -b 8 -n 10
 go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\tianshu\tianshu.go
 
+go run ~/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/math/tianshu/tianshu.go
 
 填数游戏，如下不同汉字代表一个数字  79365 * 7 = 555555
 
