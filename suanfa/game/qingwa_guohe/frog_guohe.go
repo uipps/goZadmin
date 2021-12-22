@@ -11,6 +11,10 @@
 //     go run /Users/cf/develope/go/go_code/src/github.com/uipps/goZadmin/suanfa/game/qingwa_guohe/frog_guohe.go -n 3
 //     go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\game\qingwa_guohe\frog_guohe.go -n 3 -m 4
 
+// 规律总结：每轮都是一边先走，等一方所有人都不能前行，则改为对方走，同样走到所有人都不能前行；然后再换对方......如此重复即可。
+// 注：这里“不能前行”的判断为：前面那只没有到位，则同侧两只不能相邻。
+
+
 package main
 
 import (
