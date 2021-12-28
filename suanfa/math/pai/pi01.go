@@ -12,6 +12,7 @@
 //  3.   π/2 = 2/1*2/3 * 4/3*4/5 * 6/5*6/7 * .....
 //  4.   任意位数的π，依然利用上面2的公式进行任意位数的计算
 //  5.   π/4 = 1- 1/3 + 1/5 - 1/7 + 1/9 - 1/11......   (pi02.go里面有计算)
+//  6.   定积分
 
 // go run pi01.go -n 1111
 // go run F:\develope\go\go_code_path\src\github.com\uipps\goZadmin\suanfa\math\pai\pi01.go -n 1111

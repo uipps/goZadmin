@@ -1,10 +1,20 @@
 package main
 
-import "github.com/gin-gonic/gin"
-import "net/http"
+import (
+	"github.com/gin-gonic/gin"
+    "net/http"
+)
 
 func main() {
 	router := gin.Default()
+
+	router.GET("/", func(c *gin.Context) {
+		c.String(200, "hello gin-golang!")
+	})
+
+	router.GET("/ping", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"msg":"pong"})
+	})
 
 	// This handler will match /user/john but will not match /user/ or /user
 	router.GET("/user/:name", func(c *gin.Context) {
